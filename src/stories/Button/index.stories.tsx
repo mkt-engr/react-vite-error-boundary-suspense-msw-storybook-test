@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { delay, http, HttpResponse } from "msw";
 import { fn } from "storybook/test";
 import { Button } from "./index";
 
@@ -48,5 +49,23 @@ export const Small: Story = {
   args: {
     size: "small",
     label: "Button",
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    size: "large",
+    label: "ローディングさせる",
+  },
+  parameters: {
+    msw: {
+      handlers: [
+        http.get("https://httpbin.org/status/200", async () => {
+          console.log("loading");
+          await delay("infinite");
+          return HttpResponse.json(null, { status: 200 });
+        }),
+      ],
+    },
   },
 };
