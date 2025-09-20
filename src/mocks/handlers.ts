@@ -8,4 +8,7 @@ export const handlers = [
       lastName: "Maverick",
     });
   }),
+  http.get("https://httpbin.org/status/200", async () => {
+    return new HttpResponse(null, { status: 200 });
+  }),
 ];
