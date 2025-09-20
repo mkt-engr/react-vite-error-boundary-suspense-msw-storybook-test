@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-
 import { fn } from "storybook/test";
-
-import { Button } from "./Button";
+import { Button } from "./index";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -49,13 +47,6 @@ export const Large: Story = {
 export const Small: Story = {
   args: {
     size: "small",
-    label: "Button",
-  },
-};
-
-export const Mori: Story = {
-  args: {
-    primary: false,
     label: "Button",
   },
 };
