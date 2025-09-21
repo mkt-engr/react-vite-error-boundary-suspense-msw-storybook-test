@@ -1,21 +1,20 @@
+import "./index.css";
 import { useCallApi } from "./useCallApi";
 
-import "./index.css";
-
 export interface ButtonProps {
-  /** Is this the principal call to action on the page? */
+  /** ページの主要なコールトゥアクションですか？ */
   primary?: boolean;
-  /** What background color to use */
+  /** 使用する背景色 */
   backgroundColor?: string;
-  /** How large should the button be? */
+  /** ボタンのサイズは？ */
   size?: "small" | "medium" | "large";
-  /** Button contents */
+  /** ボタンの内容 */
   label: string;
-  /** Optional click handler */
+  /** オプションのクリックハンドラ */
   onClick?: () => void;
 }
 
-/** Primary UI component for user interaction */
+/** ユーザーインタラクション用の主要UIコンポーネント */
 export const Button = ({
   primary = false,
   size = "medium",
