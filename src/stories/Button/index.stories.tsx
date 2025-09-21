@@ -61,7 +61,7 @@ export const Loading: Story = {
     msw: {
       handlers: [
         http.get("https://httpbin.org/status/200", async () => {
-          console.log("loading");
+          console.log("ローディング中だよー");
           await delay("infinite");
           return HttpResponse.json(null, { status: 200 });
         }),
