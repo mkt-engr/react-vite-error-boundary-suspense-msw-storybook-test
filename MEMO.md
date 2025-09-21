@@ -30,3 +30,12 @@ Packages: +26 -24
 ⎿ Read 19 lines (ctrl+r to expand)
 
 ⏺ ES modulesでは\_\_dirnameが使えません。代わりにimport.meta.urlを使用する必要があります。
+
+## user-eventを使えるようにする
+
+> user-eventが使えるようにモジュールを追加して
+
+Bash(pnpm add -D @testing-library/user-event)
+⎿ Progress: resolved 0, reused 1, downloaded 0, added 0  
+ Progress: resolved 485, reused 430, downloaded 0, added 0
+Already up to date
