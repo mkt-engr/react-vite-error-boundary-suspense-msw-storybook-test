@@ -1,3 +1,16 @@
+# 記事の構想
+
+データフェッチがいい
+ヘッダー、コンテンツ、フッターで分ける感じで
+
+ユーザーを管理するページ
+
+- ヘッダー：管理者のメールアドレスを取得
+- コンテンツ：ユーザーの一覧を取得、検索ボックスをつける
+- フッター：なんらかのデータを表示したい（最悪なくてもいいかも）
+
+適当にSuspenseやErrorBoundaryをつけていませんか？的な導入で入る感じで
+
 # Testing Libraryの設定
 
 ## Vitestの設定
@@ -47,18 +60,28 @@ https://ja.react.dev/reference/react/Suspense
 `useDeferredValue`を使ってる
 https://ja.react.dev/reference/react/Suspense#showing-stale-content-while-fresh-content-is-loading
 
-
 `useDeferredValue`についてはこちら
 https://ja.react.dev/reference/react/useDeferredValue
 
 # ErrorBoundary
 
 TODO
+
 # TanStack Queryの設定
 
-TODO
+fetchとかaxiosとかだと結局キャッシュの機構とかを自前で作る必要がある。
+おとなしくTanStack Queryのセットアップをするか
+
+このページを見てセットアップ
+https://tanstack.com/query/latest/docs/framework/react/installation
+
+```sh
+pnpm add @tanstack/react-query
+pnpm add -D @tanstack/eslint-plugin-query
+```
 
 # （いらんかも）Connect for　TanStack Query
+
 https://connectrpc.com/docs/web/query/getting-started/
 
 TODO

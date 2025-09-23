@@ -23,7 +23,7 @@ export const Button = ({
   onClick,
   ...props
 }: ButtonProps) => {
-  const { handleClick, loading, error, success } = useCallApi();
+  const { handleClick, loading, error } = useCallApi();
 
   const mode = primary
     ? "storybook-button--primary"
