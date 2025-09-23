@@ -39,3 +39,26 @@ Bash(pnpm add -D @testing-library/user-event)
 ⎿ Progress: resolved 0, reused 1, downloaded 0, added 0  
  Progress: resolved 485, reused 430, downloaded 0, added 0
 Already up to date
+
+# Suspense
+
+https://ja.react.dev/reference/react/Suspense
+
+`useDeferredValue`を使ってる
+https://ja.react.dev/reference/react/Suspense#showing-stale-content-while-fresh-content-is-loading
+
+
+`useDeferredValue`についてはこちら
+https://ja.react.dev/reference/react/useDeferredValue
+
+# ErrorBoundary
+
+TODO
+# TanStack Queryの設定
+
+TODO
+
+# （いらんかも）Connect for　TanStack Query
+https://connectrpc.com/docs/web/query/getting-started/
+
+TODO
