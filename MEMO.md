@@ -3,11 +3,26 @@
 データフェッチがいい
 ヘッダー、コンテンツ、フッターで分ける感じで
 
+このダミーAPIはクエパラも自由に使えるっぽい
+https://dummyjson.com/docs
+
+こんな感じ
+https://dummyjson.com/users/search?q=mor
+https://dummyjson.com/users/search?q=Johnson
+https://dummyjson.com/users/search?q=mor
+https://dummyjson.com/users/search?limit=10&skip=5&select=key1&select=key2&select=key3'
+
 ユーザーを管理するページ
 
-- ヘッダー：管理者のメールアドレスを取得
-- コンテンツ：ユーザーの一覧を取得、検索ボックスをつける
+- ヘッダー：管理者のメールアドレスを取得、画像でもいいかな？
+  - https://dummyjson.com/docs/image この辺り参照
+- コンテンツ：ユーザーの一覧を取得、検索ボックスをつける,ついでにuseDeferredValueの勉強もできる
 - フッター：なんらかのデータを表示したい（最悪なくてもいいかも）
+
+ヘッダーにカート
+https://dummyjson.com/docs/carts#carts-user
+コンテンツにプロダクト一覧でもいいかな
+https://dummyjson.com/docs/products#products-all
 
 適当にSuspenseやErrorBoundaryをつけていませんか？的な導入で入る感じで
 
