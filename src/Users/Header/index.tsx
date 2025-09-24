@@ -1,5 +1,6 @@
-import { Suspense } from "react";
 import ErrorBoundary from "@/common/ErrorBoundary";
+import { Suspense } from "react";
+import { useCart } from "./useCart";
 
 export const Header = () => {
   return (
@@ -12,9 +13,13 @@ export const Header = () => {
 };
 
 const Inner = () => {
+  const { data } = useCart({ userId: "1" });
   return (
     <header>
       <p>これはヘッダーです。</p>
+      {data.products.map((product) => (
+        <div key={product.id}>{product.title}</div>
+      ))}
     </header>
   );
 };
