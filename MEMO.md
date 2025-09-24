@@ -23,8 +23,11 @@ https://dummyjson.com/users/search?limit=10&skip=5&select=key1&select=key2&selec
 https://dummyjson.com/docs/carts#carts-user
 コンテンツにプロダクト一覧でもいいかな
 https://dummyjson.com/docs/products#products-all
+ヘッダーは画像？
+https://dummyjson.com/docs/image
 
-適当にSuspenseやErrorBoundaryをつけていませんか？的な導入で入る感じで
+- 適当にSuspenseやErrorBoundaryをつけていませんか？的な導入で入る感じで
+- 画像が読み込まれないと全部見えなくなるのは意味が分かりませんよね？的な
 
 # Testing Libraryの設定
 
