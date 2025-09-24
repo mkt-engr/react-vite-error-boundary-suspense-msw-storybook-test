@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import ErrorBoundary from "src/common/ErrorBoundary";
+import ErrorBoundary from "@/common/ErrorBoundary";
 
 export const Footer = () => {
   return (

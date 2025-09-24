@@ -3,6 +3,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
+import ErrorBoundary from "./common/ErrorBoundary.tsx";
 import "./index.css";
 
 const queryClient = new QueryClient();
@@ -23,10 +24,12 @@ enableMocking().then(() =>
   createRoot(document.getElementById("root")!).render(
     <StrictMode>
       <QueryClientProvider client={queryClient}>
-        <Suspense>
-          <ReactQueryDevtools initialIsOpen={false} />
-          <App />
-        </Suspense>
+        <ErrorBoundary fallback={null}>
+          <Suspense>
+            <ReactQueryDevtools initialIsOpen={false} />
+            <App />
+          </Suspense>
+        </ErrorBoundary>
       </QueryClientProvider>
     </StrictMode>
   )
