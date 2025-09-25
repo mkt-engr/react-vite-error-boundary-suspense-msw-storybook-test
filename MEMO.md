@@ -98,6 +98,10 @@ pnpm add @tanstack/react-query
 pnpm add -D @tanstack/eslint-plugin-query
 ```
 
+# MSW
+
+[サーバーに送信したリクエストを検査する](https://tech.jxpress.net/entry/2025/01/14/103618#:~:text=%E3%82%B5%E3%83%BC%E3%83%8F%E3%82%99%E3%83%BC%E3%81%AB%E9%80%81%E4%BF%A1%E3%81%97%E3%81%9F%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%92%E6%A4%9C%E6%9F%BB%E3%81%99%E3%82%8B)
+
 # （いらんかも）Connect for　TanStack Query
 
 https://connectrpc.com/docs/web/query/getting-started/

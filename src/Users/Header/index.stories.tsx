@@ -1,4 +1,5 @@
 import type { Cart } from "@/schemes/cart";
+import { generateApiUrl } from "@/test/generateApiUrl";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { delay, http, HttpResponse } from "msw";
 import { Header } from ".";
@@ -9,7 +10,8 @@ const meta: Meta<typeof Header> = {
   parameters: {
     docs: {
       story: {
-        inline: false, //各Storyを個別のiframeで実行するように設定した。inline:falseにより、DocsページでもStoryが独立したiframeで動作し、TanStack Queryのキャッシュ競合を回避できます。
+        //inline:falseにより、各Storyを個別のiframeで実行するように設定した。DocsページでもStoryが独立したiframeで動作し、TanStack Queryのキャッシュ競合を回避できる。
+        inline: false,
         iframeHeight: 200,
       },
     },
@@ -24,7 +26,7 @@ export const Default: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get("https://dummyjson.com/carts/1", () => {
+        http.get(generateApiUrl("carts/1"), () => {
           return HttpResponse.json({
             id: 1,
             products: [
@@ -75,7 +77,7 @@ export const NoProduct: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get("https://dummyjson.com/carts/1", () => {
+        http.get(generateApiUrl("/carts/1"), () => {
           return HttpResponse.json({
             id: 1,
             products: [],
@@ -95,7 +97,7 @@ export const Loading: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get("https://dummyjson.com/carts/1", async () => {
+        http.get(generateApiUrl("/carts/1"), async () => {
           await delay("infinite");
         }),
       ],
@@ -107,7 +109,7 @@ export const Error: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get("https://dummyjson.com/carts/1", () => {
+        http.get(generateApiUrl("/carts/1"), () => {
           return new HttpResponse(null, { status: 500 });
         }),
       ],
