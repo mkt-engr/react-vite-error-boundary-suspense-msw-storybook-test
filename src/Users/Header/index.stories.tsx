@@ -4,7 +4,16 @@ import { delay, http, HttpResponse } from "msw";
 import { Header } from ".";
 
 const meta: Meta<typeof Header> = {
+  tags: ["autodocs"],
   component: Header,
+  parameters: {
+    docs: {
+      story: {
+        inline: false, //各Storyを個別のiframeで実行するように設定した。inline:falseにより、DocsページでもStoryが独立したiframeで動作し、TanStack Queryのキャッシュ競合を回避できます。
+        iframeHeight: 200,
+      },
+    },
+  },
 };
 
 export default meta;
