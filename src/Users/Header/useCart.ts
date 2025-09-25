@@ -6,7 +6,11 @@ type Args = {
 };
 
 export const useCart = ({ userId }: Args) => {
-  const { data, isPending, error } = useSuspenseQuery({
+  const {
+    data: cart,
+    isPending,
+    error,
+  } = useSuspenseQuery({
     queryKey: ["cart"],
     queryFn: async () => {
       const response = await fetchCartByUserId({ userId });
@@ -14,5 +18,5 @@ export const useCart = ({ userId }: Args) => {
     },
   });
 
-  return { data, isPending, error };
+  return { cart, isPending, error };
 };

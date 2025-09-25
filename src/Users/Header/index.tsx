@@ -13,10 +13,16 @@ export const Header = () => {
 };
 
 const Inner = () => {
-  const { data } = useCart({ userId: "1" });
+  const { cart } = useCart({ userId: "1" });
+
+  if (cart.products.length === 0) {
+    return <header>カートには何もありません。</header>;
+  }
+
   return (
     <header>
-      {data.products.map((product) => (
+      <div>カートの商品の金額:{cart.total}円</div>
+      {cart.products.map((product) => (
         <div key={product.id}>{product.title}</div>
       ))}
     </header>
