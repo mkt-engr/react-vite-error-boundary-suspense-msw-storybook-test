@@ -1,8 +1,7 @@
-import { generateApiUrl } from "@/test/generateApiUrl";
-import { http, HttpResponse } from "msw";
-import { describe, expect, it } from "vitest";
 import { server } from "@/mocks/server";
 import type { Cart } from "@/schemes/cart";
+import { generateApiUrl } from "@/test/generateApiUrl";
+import { http, HttpResponse } from "msw";
 import { fetchCartByUserId } from "./fetchCartByUserId";
 
 describe("fetchCartByUserId", () => {

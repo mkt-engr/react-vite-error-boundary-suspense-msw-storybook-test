@@ -1,9 +1,7 @@
 import { customRender } from "@test/customRender";
-import "@testing-library/jest-dom/vitest";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { delay, http, HttpResponse } from "msw";
-import { describe, expect, it } from "vitest";
 import { Button } from ".";
 import { server } from "@mocks/server";
 

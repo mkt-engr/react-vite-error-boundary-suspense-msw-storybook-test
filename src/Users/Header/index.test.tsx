@@ -2,7 +2,6 @@ import { customRender } from "@/test/customRender";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import { screen } from "@testing-library/react";
 import { delay, http, HttpResponse } from "msw";
-import { describe, expect, it } from "vitest";
 import { server } from "@/mocks/server";
 import type { Cart } from "@/schemes/cart";
 import { Header } from ".";
