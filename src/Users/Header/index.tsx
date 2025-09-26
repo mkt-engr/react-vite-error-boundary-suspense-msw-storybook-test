@@ -22,9 +22,11 @@ const Inner = () => {
   return (
     <header>
       <div>カートの商品の金額:{cart.total}円</div>
-      {cart.products.map((product) => (
-        <div key={product.id}>{product.title}</div>
-      ))}
+      <ul>
+        {cart.products.map((product) => (
+          <li key={product.id}>{product.title}</li>
+        ))}
+      </ul>
     </header>
   );
 };

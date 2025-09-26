@@ -26,7 +26,7 @@ export const Default: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("carts/1"), () => {
+        http.get(generateApiUrl("/carts/1"), () => {
           return HttpResponse.json({
             id: 1,
             products: [
