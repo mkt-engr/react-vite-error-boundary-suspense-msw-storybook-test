@@ -73,7 +73,7 @@ export const Default: Story = {
   },
 };
 
-export const NoProduct: Story = {
+export const NoProductInCart: Story = {
   parameters: {
     msw: {
       handlers: [
