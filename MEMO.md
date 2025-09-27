@@ -98,6 +98,9 @@ pnpm add @tanstack/react-query
 pnpm add -D @tanstack/eslint-plugin-query
 ```
 
+onClick時にuseSuspenseQueryを実行したい
+https://zenn.dev/chot/articles/4b484d45eae424#2.-usesuspensequery-%E3%83%99%E3%83%BC%E3%82%B9%E6%89%8B%E6%B3%95-%F0%9F%8C%9F
+
 # MSW
 
 - [サーバーに送信したリクエストを検査する](https://tech.jxpress.net/entry/2025/01/14/103618#:~:text=%E3%82%B5%E3%83%BC%E3%83%8F%E3%82%99%E3%83%BC%E3%81%AB%E9%80%81%E4%BF%A1%E3%81%97%E3%81%9F%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%92%E6%A4%9C%E6%9F%BB%E3%81%99%E3%82%8B)

@@ -26,7 +26,7 @@ export const Default: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("/products"), () => {
+        http.get(generateApiUrl("/products/search"), () => {
           return HttpResponse.json({
             products: [
               {
@@ -43,12 +43,14 @@ export const Default: Story = {
                 weight: 2,
                 tags: ["smartphones", "apple"],
                 images: ["https://cdn.dummyjson.com/product-images/1/1.jpg"],
-                thumbnail: "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
+                thumbnail:
+                  "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
               },
               {
                 id: 2,
                 title: "iPhone X",
-                description: "SIM-Free, Model A19211 6.5-inch Super Retina HD display",
+                description:
+                  "SIM-Free, Model A19211 6.5-inch Super Retina HD display",
                 category: "smartphones",
                 price: 899,
                 discountPercentage: 17.94,
@@ -59,12 +61,14 @@ export const Default: Story = {
                 weight: 2,
                 tags: ["smartphones", "apple"],
                 images: ["https://cdn.dummyjson.com/product-images/2/1.jpg"],
-                thumbnail: "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+                thumbnail:
+                  "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
               },
               {
                 id: 3,
                 title: "Samsung Universe 9",
-                description: "Samsung's new variant which goes beyond Galaxy to the Universe",
+                description:
+                  "Samsung's new variant which goes beyond Galaxy to the Universe",
                 category: "smartphones",
                 price: 1249,
                 discountPercentage: 15.46,
@@ -75,7 +79,8 @@ export const Default: Story = {
                 weight: 2,
                 tags: ["smartphones", "samsung"],
                 images: ["https://cdn.dummyjson.com/product-images/3/1.jpg"],
-                thumbnail: "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
+                thumbnail:
+                  "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
               },
             ],
             total: 3,
@@ -92,7 +97,7 @@ export const NoProduct: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("/products"), () => {
+        http.get(generateApiUrl("/products/search"), () => {
           return HttpResponse.json({
             products: [],
             total: 0,
@@ -109,7 +114,7 @@ export const Loading: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("/products"), async () => {
+        http.get(generateApiUrl("/products/search"), async () => {
           await delay("infinite");
         }),
       ],
@@ -121,7 +126,7 @@ export const Error: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("/products"), () => {
+        http.get(generateApiUrl("/products/search"), () => {
           return new HttpResponse(null, { status: 500 });
         }),
       ],
