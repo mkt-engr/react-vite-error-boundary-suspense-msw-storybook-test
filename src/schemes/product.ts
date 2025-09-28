@@ -11,6 +11,8 @@ export const productSchema = z.object({
   thumbnail: z.httpUrl(),
 });
 
+export type Product = z.infer<typeof productSchema>;
+
 export const searchProductSchema = z.object({
   id: z.number().int().positive(),
   title: z.string().nonempty(),
