@@ -30,8 +30,8 @@ export const Default: Story = {
             quotes: [
               {
                 id: 1,
-                quote: "Life isn't about getting and having, it's about giving and being.",
-                author: "Kevin Kruse",
+                quote: "君のような勘のいいガキは嫌いだよ",
+                author: "ショウ・タッカー",
               },
             ],
             total: 1,
@@ -53,7 +53,8 @@ export const LongQuote: Story = {
             quotes: [
               {
                 id: 2,
-                quote: "The way to get started is to quit talking and begin doing. Don't be afraid to give up the good to go for the great. Innovation distinguishes between a leader and a follower.",
+                quote:
+                  "The way to get started is to quit talking and begin doing. Don't be afraid to give up the good to go for the great. Innovation distinguishes between a leader and a follower.",
                 author: "Walt Disney & Steve Jobs",
               },
             ],
