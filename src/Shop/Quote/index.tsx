@@ -16,12 +16,12 @@ const Inner = () => {
   const { data } = useQuote();
 
   return (
-    <footer>
-      <h3>今日の名言</h3>
+    <div>
+      <h2>今日の名言</h2>
       <blockquote>
         <p>"{data.quote}"</p>
         <cite>— {data.author}</cite>
       </blockquote>
-    </footer>
+    </div>
   );
 };

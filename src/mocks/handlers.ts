@@ -1,6 +1,6 @@
 import type { Cart } from "@/schemes/cart";
 import type { ProductsSearchResponse } from "@/schemes/product";
-import type { QuotesResponse } from "@/schemes/quote";
+import type { QuoteResponse } from "@/schemes/quote";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import { http, HttpResponse } from "msw";
 
@@ -10,53 +10,62 @@ export const handlers = [
       products: [
         {
           id: 1,
-          title: "iPhone 9",
-          description: "An apple mobile which is nothing like apple",
-          category: "smartphones",
-          price: 549,
+          title: "iPhone 15 Pro",
+          description: "最新のApple製スマートフォン。高性能なA17 Proチップ搭載で、プロ級の写真撮影が可能です。",
+          category: "スマートフォン",
+          price: 159800,
           discountPercentage: 12.96,
           rating: 4.69,
           stock: 94,
           brand: "Apple",
           sku: "WW013001",
           weight: 2,
-          tags: ["smartphones", "apple"],
-          images: ["https://cdn.dummyjson.com/product-images/1/1.jpg"],
-          thumbnail: "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
+          tags: ["スマートフォン", "Apple"],
+          images: [
+            "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp",
+          ],
+          thumbnail:
+            "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/thumbnail.webp",
         },
         {
           id: 2,
-          title: "iPhone X",
+          title: "MacBook Air M3",
           description:
-            "SIM-Free, Model A19211 6.5-inch Super Retina HD display",
-          category: "smartphones",
-          price: 899,
+            "軽量で高性能なMacBook Air。M3チップ搭載で、一日中使えるバッテリー持続時間を実現。",
+          category: "ノートパソコン",
+          price: 164800,
           discountPercentage: 17.94,
           rating: 4.44,
           stock: 34,
           brand: "Apple",
           sku: "WW013002",
           weight: 2,
-          tags: ["smartphones", "apple"],
-          images: ["https://cdn.dummyjson.com/product-images/2/1.jpg"],
-          thumbnail: "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+          tags: ["ノートパソコン", "Apple"],
+          images: [
+            "https://cdn.dummyjson.com/product-images/beauty/eyeshadow-palette-with-mirror/1.webp",
+          ],
+          thumbnail:
+            "https://cdn.dummyjson.com/product-images/beauty/eyeshadow-palette-with-mirror/thumbnail.webp",
         },
         {
           id: 3,
-          title: "Samsung Universe 9",
+          title: "Nintendo Switch OLED",
           description:
-            "Samsung's new variant which goes beyond Galaxy to the Universe",
-          category: "smartphones",
-          price: 1249,
+            "有機ELディスプレイ搭載のNintendo Switch。鮮やかな画面でゲームを楽しめます。",
+          category: "ゲーム機",
+          price: 37980,
           discountPercentage: 15.46,
           rating: 4.09,
           stock: 36,
-          brand: "Samsung",
+          brand: "Nintendo",
           sku: "WW013003",
           weight: 2,
-          tags: ["smartphones", "samsung"],
-          images: ["https://cdn.dummyjson.com/product-images/3/1.jpg"],
-          thumbnail: "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
+          tags: ["ゲーム機", "Nintendo"],
+          images: [
+            "https://cdn.dummyjson.com/product-images/beauty/powder-canister/1.webp",
+          ],
+          thumbnail:
+            "https://cdn.dummyjson.com/product-images/beauty/powder-canister/thumbnail.webp",
         },
       ],
       total: 3,
@@ -106,19 +115,11 @@ export const handlers = [
       totalQuantity: 4,
     } satisfies Cart);
   }),
-  http.get(generateApiUrl("/quotes"), () => {
+  http.get(generateApiUrl("/quotes/random"), () => {
     return HttpResponse.json({
-      quotes: [
-        {
-          id: 1,
-          quote:
-            "Life isn't about getting and having, it's about giving and being.",
-          author: "Kevin Kruse",
-        },
-      ],
-      total: 1,
-      skip: 0,
-      limit: 1,
-    } satisfies QuotesResponse);
+      id: 62,
+      quote: "君のような勘のいいガキは嫌いだよ",
+      author: "ショウ・タッカー",
+    } satisfies QuoteResponse);
   }),
 ];

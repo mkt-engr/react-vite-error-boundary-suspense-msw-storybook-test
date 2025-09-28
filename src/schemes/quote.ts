@@ -6,12 +6,8 @@ export const quoteSchema = z.object({
   author: z.string().nonempty(),
 });
 
-export const quotesResponseSchema = z.object({
-  quotes: quoteSchema.array(),
-  total: z.number().int().nonnegative(),
-  skip: z.number().int().nonnegative(),
-  limit: z.number().int().nonnegative(),
-});
-
 export type Quote = z.infer<typeof quoteSchema>;
-export type QuotesResponse = z.infer<typeof quotesResponseSchema>;
+
+export const quoteResponseSchema = quoteSchema;
+
+export type QuoteResponse = z.infer<typeof quoteResponseSchema>;
