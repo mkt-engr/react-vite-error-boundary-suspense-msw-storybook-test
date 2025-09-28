@@ -4,7 +4,7 @@ import { useCart } from "./useCart";
 
 export const Cart = () => {
   return (
-    <ErrorBoundary fallback={<div>カートのエラー</div>}>
+    <ErrorBoundary fallback={<div>カートの取得に失敗しました。</div>}>
       <Suspense fallback={<div>カートのローディング</div>}>
         <h2>カート</h2>
         <Inner />

@@ -4,7 +4,7 @@ import { useQuote } from "./useQuote";
 
 export const Quote = () => {
   return (
-    <ErrorBoundary fallback={<div>名言の読み込みでエラーが発生しました</div>}>
+    <ErrorBoundary fallback={<div>今日の名言の取得に失敗しました。</div>}>
       <Suspense fallback={<div>今日の名言を読み込み中...</div>}>
         <Inner />
       </Suspense>

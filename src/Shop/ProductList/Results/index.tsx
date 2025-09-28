@@ -33,7 +33,7 @@ const Inner: FC<Props> = ({ query }) => {
       <div>
         {data.products.map((product) => (
           <div key={product.id}>
-            {/* <img src={product.thumbnail} alt={product.title} /> */}
+            <img src={product.thumbnail} alt={product.title} width={100} />
             <h3>{product.title}</h3>
             <p>{product.description}</p>
             <div>${product.price}</div>

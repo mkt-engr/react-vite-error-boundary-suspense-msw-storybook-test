@@ -1,14 +1,14 @@
 import { server } from "@/mocks/server";
 import type { Cart } from "@/schemes/cart";
 import { customRender } from "@/test/customRender";
-import { generateApiUrl } from "@/test/generateApiUrl";
 import { screen } from "@testing-library/react";
 import { delay, http, HttpResponse } from "msw";
+import { Cart as Component } from ".";
 
-describe("Header", () => {
+describe("Cart", () => {
   it("商品が3つある場合、商品一覧と合計金額が表示される", async () => {
     server.use(
-      http.get(generateApiUrl("/carts/1"), () => {
+      http.get("https://dummyjson.com/carts/1", () => {
         return HttpResponse.json({
           id: 1,
           products: [
@@ -52,7 +52,7 @@ describe("Header", () => {
       })
     );
 
-    customRender(<Cart />);
+    customRender(<Component />);
 
     await screen.findByText("カートの商品の金額:800円");
 
@@ -63,7 +63,7 @@ describe("Header", () => {
 
   it("商品が0の場合、空カートメッセージが表示される", async () => {
     server.use(
-      http.get(generateApiUrl("/carts/1"), () => {
+      http.get("https://dummyjson.com/carts/1", () => {
         return HttpResponse.json({
           id: 1,
           products: [],
@@ -76,7 +76,7 @@ describe("Header", () => {
       })
     );
 
-    customRender(<Cart />);
+    customRender(<Component />);
 
     expect(
       await screen.findByText("カートには何もありません。")
@@ -85,25 +85,25 @@ describe("Header", () => {
 
   it("ローディング中はローディングメッセージが表示される", async () => {
     server.use(
-      http.get(generateApiUrl("/carts/1"), async () => {
+      http.get("https://dummyjson.com/carts/1", async () => {
         await delay("infinite");
       })
     );
 
-    customRender(<Cart />);
+    customRender(<Component />);
 
-    expect(screen.getByText("ヘッダーのローディング")).toBeInTheDocument();
+    expect(screen.getByText("カートのローディング")).toBeInTheDocument();
   });
 
   it("エラー発生時はエラーメッセージが表示される", async () => {
     server.use(
-      http.get(generateApiUrl("/carts/1"), () => {
+      http.get("https://dummyjson.com/carts/1", () => {
         return new HttpResponse(null, { status: 500 });
       })
     );
 
-    customRender(<Cart />);
+    customRender(<Component />);
 
-    expect(await screen.findByText("ヘッダーのエラー")).toBeInTheDocument();
+    expect(await screen.findByText("カートの取得に失敗しました。")).toBeInTheDocument();
   });
 });
