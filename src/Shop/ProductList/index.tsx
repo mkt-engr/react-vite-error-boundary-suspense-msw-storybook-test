@@ -4,7 +4,7 @@ import { Results } from "./Results";
 export const ProductList = () => {
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);
-
+  const isStale = query !== deferredQuery;
   return (
     <main>
       <h2>商品一覧</h2>
@@ -16,6 +16,7 @@ export const ProductList = () => {
           onChange={(e) => setQuery(e.target.value)}
         />
       </label>
+      {isStale ? <span>検索中</span> : null}
       <Results query={deferredQuery} />
     </main>
   );
