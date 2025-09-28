@@ -81,6 +81,17 @@ https://ja.react.dev/reference/react/Suspense#showing-stale-content-while-fresh-
 `useDeferredValue`についてはこちら
 https://ja.react.dev/reference/react/useDeferredValue
 
+ProductListコンポーネントにuseDeferredValueを追加したパフォーマンス改善
+
+変更内容:
+
+- useDeferredValueを使用して検索入力の遅延処理を実装
+- ユーザーが検索ボックスに入力している間、APIリクエストが頻繁に発生することを防止
+- より良い検索体験とパフォーマンスの最適化
+
+これでユーザーが素早くタイピングしても、最終的な入力値でのみAPIが呼び出されるようになり、不要なリ
+クエストを削減できます。
+
 # ErrorBoundary
 
 TODO
@@ -111,3 +122,48 @@ https://zenn.dev/chot/articles/4b484d45eae424#2.-usesuspensequery-%E3%83%99%E3%8
 https://connectrpc.com/docs/web/query/getting-started/
 
 TODO
+
+# 304 NotModifiedってなに
+
+⏺ 304 Not ModifiedはHTTPステータスコードの一つで、「リソースが変更されていない」という意味です。
+
+304 Not Modifiedの仕組み
+
+初回リクエスト:
+Client → Server: GET /api/products
+Server → Client: 200 OK + データ + ETag: "abc123"
+
+2回目のリクエスト:
+Client → Server: GET /api/products + If-None-Match: "abc123"
+Server → Client: 304 Not Modified (データなし)
+
+メリット
+
+1. 帯域幅の節約: データを再送信しない
+2. 高速化: 小さなレスポンスサイズ
+3. サーバー負荷軽減: 処理が軽い
+
+ブラウザでの表示
+
+DevToolsのNetworkタブで：
+
+- Size: (from disk cache) または小さなサイズ
+- Status: 304
+- Time: 通常のリクエストより高速
+
+APIでの実装例
+
+// サーバー側
+app.get('/api/products', (req, res) => {
+const etag = generateETag(products);
+
+    if (req.headers['if-none-match'] === etag) {
+      return res.status(304).end(); // 304を返す
+    }
+
+    res.set('ETag', etag);
+    res.json(products);
+
+});
+
+つまり304は正常な状態で、キャッシュが効いているサインです。エラーではありません。
