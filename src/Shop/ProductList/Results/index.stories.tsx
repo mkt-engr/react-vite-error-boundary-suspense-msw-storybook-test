@@ -2,11 +2,11 @@ import type { ProductsSearchResponse } from "@/schemes/product";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { delay, http, HttpResponse } from "msw";
-import { ProductList } from ".";
+import { Results as component } from ".";
 
-const meta: Meta<typeof ProductList> = {
+const meta: Meta<typeof component> = {
   tags: ["autodocs"],
-  component: ProductList,
+  component,
   parameters: {
     docs: {
       story: {

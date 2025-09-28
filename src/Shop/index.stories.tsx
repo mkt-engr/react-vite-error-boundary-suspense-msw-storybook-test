@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Users } from ".";
+import { Shop as component } from ".";
 
-const meta: Meta<typeof Users> = {
-  component: Users,
+const meta: Meta<typeof component> = {
+  component,
 };
 
 export default meta;

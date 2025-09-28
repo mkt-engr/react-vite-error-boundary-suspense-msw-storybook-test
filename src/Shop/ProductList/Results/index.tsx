@@ -6,7 +6,7 @@ type Props = {
   query: string;
 };
 
-export const ProductList: FC<Props> = ({ query }: Props) => {
+export const Results: FC<Props> = ({ query }: Props) => {
   return (
     <ErrorBoundary fallback={<div>商品一覧でエラーが発生しました</div>}>
       <Suspense fallback={<div>商品一覧を読み込み中...</div>}>
