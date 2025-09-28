@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useDeferredValue, useState } from "react";
 import { Results } from "./Results";
 
 export const ProductList = () => {
   const [query, setQuery] = useState("");
+  const deferredQuery = useDeferredValue(query);
 
   return (
     <main>
@@ -15,7 +16,7 @@ export const ProductList = () => {
           onChange={(e) => setQuery(e.target.value)}
         />
       </label>
-      <Results query={query} />
+      <Results query={deferredQuery} />
     </main>
   );
 };
