@@ -12,10 +12,17 @@ async function enableMocking() {
     return;
   }
 
+  // 環境変数でMSWを有効にする場合のみ起動
+  if (import.meta.env.ENABLE_MOCK !== "true") {
+    console.log("MSW is disabled. Use 'pnpm dev:mock' to enable MSW.");
+    return;
+  }
+
   const { worker } = await import("./mocks/browsers.ts");
 
   // `worker.start()` returns a Promise that resolves
   // once the Service Worker is up and ready to intercept requests.
+  console.log("MSW is enabled");
   return worker.start();
 }
 

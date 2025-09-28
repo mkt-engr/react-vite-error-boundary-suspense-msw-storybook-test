@@ -5,17 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 3000",
+    "dev:mock": "ENABLE_MOCK=true vite --port 3000",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "catalog": "storybook dev -p 6006",
+    "catalog": "ENABLE_MOCK=true storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "vitest",
-    "test:watch": "vitest watch",
-    "test:coverage": "vitest run --coverage"
+    "test": "ENABLE_MOCK=true vitest",
+    "test:watch": "ENABLE_MOCK=true vitest watch",
+    "test:coverage": "ENABLE_MOCK=true vitest run --coverage"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.2",
