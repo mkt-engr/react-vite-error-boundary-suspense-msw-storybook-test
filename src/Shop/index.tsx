@@ -1,7 +1,7 @@
 import { Cart } from "./Cart";
 import { Contents } from "./Contents";
 
-export const Users = () => {
+export const Shop = () => {
   return (
     <div>
       <Cart />

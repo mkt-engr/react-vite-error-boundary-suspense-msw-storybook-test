@@ -1,3 +1,3 @@
-import { Users } from "@/Users";
+import { Shop } from "@/Shop";
 
-export const App = () => <Users />;
+export const App = () => <Shop />;
