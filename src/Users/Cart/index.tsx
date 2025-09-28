@@ -2,10 +2,10 @@ import ErrorBoundary from "@/common/ErrorBoundary";
 import { Suspense } from "react";
 import { useCart } from "./useCart";
 
-export const Header = () => {
+export const Cart = () => {
   return (
-    <ErrorBoundary fallback={<div>ヘッダーのエラー</div>}>
-      <Suspense fallback={<div>ヘッダーのローディング</div>}>
+    <ErrorBoundary fallback={<div>カートのエラー</div>}>
+      <Suspense fallback={<div>カートのローディング</div>}>
         <Inner />
       </Suspense>
     </ErrorBoundary>

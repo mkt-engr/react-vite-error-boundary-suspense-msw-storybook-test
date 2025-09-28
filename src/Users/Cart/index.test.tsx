@@ -1,10 +1,9 @@
+import { server } from "@/mocks/server";
+import type { Cart } from "@/schemes/cart";
 import { customRender } from "@/test/customRender";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import { screen } from "@testing-library/react";
 import { delay, http, HttpResponse } from "msw";
-import { server } from "@/mocks/server";
-import type { Cart } from "@/schemes/cart";
-import { Header } from ".";
 
 describe("Header", () => {
   it("商品が3つある場合、商品一覧と合計金額が表示される", async () => {
@@ -53,7 +52,7 @@ describe("Header", () => {
       })
     );
 
-    customRender(<Header />);
+    customRender(<Cart />);
 
     await screen.findByText("カートの商品の金額:800円");
 
@@ -77,9 +76,11 @@ describe("Header", () => {
       })
     );
 
-    customRender(<Header />);
+    customRender(<Cart />);
 
-    expect(await screen.findByText("カートには何もありません。")).toBeInTheDocument();
+    expect(
+      await screen.findByText("カートには何もありません。")
+    ).toBeInTheDocument();
   });
 
   it("ローディング中はローディングメッセージが表示される", async () => {
@@ -89,7 +90,7 @@ describe("Header", () => {
       })
     );
 
-    customRender(<Header />);
+    customRender(<Cart />);
 
     expect(screen.getByText("ヘッダーのローディング")).toBeInTheDocument();
   });
@@ -101,7 +102,7 @@ describe("Header", () => {
       })
     );
 
-    customRender(<Header />);
+    customRender(<Cart />);
 
     expect(await screen.findByText("ヘッダーのエラー")).toBeInTheDocument();
   });

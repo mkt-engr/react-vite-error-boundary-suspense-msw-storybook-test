@@ -2,11 +2,10 @@ import type { Cart } from "@/schemes/cart";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { delay, http, HttpResponse } from "msw";
-import { Header } from ".";
 
-const meta: Meta<typeof Header> = {
+const meta: Meta<typeof Cart> = {
   tags: ["autodocs"],
-  component: Header,
+  component: Cart,
   parameters: {
     docs: {
       story: {
