@@ -22,18 +22,18 @@ const Inner: FC<Props> = ({ query }) => {
   if (data.products.length === 0) {
     return (
       <div>
-        <h2>商品がありませんでした。</h2>
+        <h3>商品がありませんでした。</h3>
       </div>
     );
   }
 
   return (
     <div>
-      <h2>{data.total}件</h2>
+      <h3>商品件数:{data.total}件</h3>
       <div>
         {data.products.map((product) => (
           <div key={product.id}>
-            <img src={product.thumbnail} alt={product.title} />
+            {/* <img src={product.thumbnail} alt={product.title} /> */}
             <h3>{product.title}</h3>
             <p>{product.description}</p>
             <div>${product.price}</div>

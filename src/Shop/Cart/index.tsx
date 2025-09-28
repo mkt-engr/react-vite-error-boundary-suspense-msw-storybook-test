@@ -6,6 +6,7 @@ export const Cart = () => {
   return (
     <ErrorBoundary fallback={<div>カートのエラー</div>}>
       <Suspense fallback={<div>カートのローディング</div>}>
+        <h2>カート</h2>
         <Inner />
       </Suspense>
     </ErrorBoundary>
@@ -20,13 +21,13 @@ const Inner = () => {
   }
 
   return (
-    <header>
+    <div>
       <div>カートの商品の金額:{cart.total}円</div>
       <ul>
         {cart.products.map((product) => (
           <li key={product.id}>{product.title}</li>
         ))}
       </ul>
-    </header>
+    </div>
   );
 };
