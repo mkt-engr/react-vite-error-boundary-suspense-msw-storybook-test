@@ -1,4 +1,4 @@
-import type { QuoteResponse } from "@/schemes/quote";
+import { generateQuoteMock } from "@/mocks/quota.mock";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { delay, http, HttpResponse } from "msw";
@@ -26,11 +26,13 @@ export const Default: Story = {
     msw: {
       handlers: [
         http.get(generateApiUrl("/quotes/random"), () => {
-          return HttpResponse.json({
-            id: 1,
-            quote: "君のような勘のいいガキは嫌いだよ",
-            author: "ショウ・タッカー",
-          } satisfies QuoteResponse);
+          return HttpResponse.json(
+            generateQuoteMock({
+              id: 1,
+              quote: "君のような勘のいいガキは嫌いだよ",
+              author: "ショウ・タッカー",
+            })
+          );
         }),
       ],
     },
@@ -42,12 +44,14 @@ export const LongQuote: Story = {
     msw: {
       handlers: [
         http.get(generateApiUrl("/quotes/random"), () => {
-          return HttpResponse.json({
-            id: 2,
-            quote:
-              "The way to get started is to quit talking and begin doing. Don't be afraid to give up the good to go for the great. Innovation distinguishes between a leader and a follower.",
-            author: "Walt Disney & Steve Jobs",
-          } satisfies QuoteResponse);
+          return HttpResponse.json(
+            generateQuoteMock({
+              id: 2,
+              quote:
+                "The way to get started is to quit talking and begin doing. Don't be afraid to give up the good to go for the great. Innovation distinguishes between a leader and a follower.",
+              author: "Walt Disney & Steve Jobs",
+            })
+          );
         }),
       ],
     },
