@@ -4,8 +4,14 @@ import {
 } from "@/schemes/product";
 import { generateApiUrl } from "@/test/generateApiUrl";
 
-export const fetchProducts = async (): Promise<ProductsSearchResponse> => {
-  const response = await fetch(generateApiUrl("/products/search"));
+type Args = {
+  query: string;
+};
+
+export const fetchProducts = async ({
+  query,
+}: Args): Promise<ProductsSearchResponse> => {
+  const response = await fetch(generateApiUrl(`/products/search?q=${query}`));
 
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);

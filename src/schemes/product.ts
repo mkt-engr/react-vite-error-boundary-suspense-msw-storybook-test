@@ -32,7 +32,7 @@ export const productsSearchResponseSchema = z.object({
   products: searchProductSchema.array(),
   total: z.number().int().nonnegative(),
   skip: z.number().int().nonnegative(),
-  limit: z.number().int().positive(),
+  limit: z.number().int().nonnegative(),
 });
 
 export type ProductsSearchResponse = z.infer<

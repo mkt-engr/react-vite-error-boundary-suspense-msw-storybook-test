@@ -1,13 +1,11 @@
-import { Header } from "./Header";
 import { Contents } from "./Contents";
-import { Footer } from "./Footer";
+import { Header } from "./Header";
 
 export const Users = () => {
   return (
     <div>
       <Header />
       <Contents />
-      <Footer />
     </div>
   );
 };
