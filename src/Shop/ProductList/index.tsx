@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ProductList } from "./ProductList";
+import { Results } from "./Results";
 
-export const Contents = () => {
+export const ProductList = () => {
   const [query, setQuery] = useState("");
 
   return (
@@ -15,7 +15,7 @@ export const Contents = () => {
           onChange={(e) => setQuery(e.target.value)}
         />
       </label>
-      <ProductList query={query} />
+      <Results query={query} />
     </main>
   );
 };
