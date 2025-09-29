@@ -1,4 +1,4 @@
-import { generateQuoteMock } from "@/mocks/quota.mock";
+import { generateQuoteMock } from "@/mocks/quota";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { delay, http, HttpResponse } from "msw";

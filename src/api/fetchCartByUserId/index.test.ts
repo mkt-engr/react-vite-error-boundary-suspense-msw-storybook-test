@@ -1,5 +1,5 @@
-import { generateCartMock } from "@/mocks/cart.mock";
-import { generateProductMock } from "@/mocks/product.mock";
+import { generateCartMock } from "@/mocks/cart";
+import { generateProductMock } from "@/mocks/product";
 import { server } from "@/mocks/server";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import { http, HttpResponse } from "msw";

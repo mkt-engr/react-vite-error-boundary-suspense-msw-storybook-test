@@ -1,4 +1,4 @@
-import { generateQuoteMock } from "@/mocks/quota.mock";
+import { generateQuoteMock } from "@/mocks/quota";
 import { server } from "@/mocks/server";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import { http, HttpResponse } from "msw";

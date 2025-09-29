@@ -1,4 +1,4 @@
-import { generateProductsSearchMock, generateProductInSearchMock } from "@/mocks/product.mock";
+import { generateProductsSearchMock, generateProductInSearchMock } from "@/mocks/product";
 import { server } from "@/mocks/server";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import { http, HttpResponse } from "msw";

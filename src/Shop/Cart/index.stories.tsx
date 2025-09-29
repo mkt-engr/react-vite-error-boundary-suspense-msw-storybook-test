@@ -1,5 +1,5 @@
-import { generateCartMock } from "@/mocks/cart.mock";
-import { generateProductMock } from "@/mocks/product.mock";
+import { generateCartMock } from "@/mocks/cart";
+import { generateProductMock } from "@/mocks/product";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { delay, http, HttpResponse } from "msw";
