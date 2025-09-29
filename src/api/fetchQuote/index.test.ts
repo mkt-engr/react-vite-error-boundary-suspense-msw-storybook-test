@@ -1,17 +1,20 @@
-import { generateApiUrl } from "@/test/generateApiUrl";
+import { generateQuoteMock } from "@/mocks/quota.mock";
 import { server } from "@/mocks/server";
+import { generateApiUrl } from "@/test/generateApiUrl";
 import { http, HttpResponse } from "msw";
 import { fetchQuote } from ".";
 
 describe("fetchQuote", () => {
   it("正常にQuoteResponseを返す", async () => {
+    const mockQuote = generateQuoteMock({
+      id: 1,
+      quote: "テストの名言",
+      author: "テスト太郎",
+    });
+
     server.use(
       http.get(generateApiUrl("/quotes/random"), () => {
-        return HttpResponse.json({
-          id: 1,
-          quote: "テストの名言",
-          author: "テスト太郎",
-        });
+        return HttpResponse.json(mockQuote);
       })
     );
 
