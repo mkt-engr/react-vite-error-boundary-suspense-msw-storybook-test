@@ -1,5 +1,5 @@
 import { useDeferredValue, useState } from "react";
-import { Results } from "./Results";
+import { Results } from "./Result";
 
 export const ProductList = () => {
   const [query, setQuery] = useState("");
