@@ -1,11 +1,11 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
 import { fetchCartByUserId } from "@/api/fetchCartByUserId";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 type Args = {
   userId: string;
 };
 
-export const useCart = ({ userId }: Args) => {
+export const useItem = ({ userId }: Args) => {
   const {
     data: cart,
     isPending,

@@ -1,8 +1,8 @@
 import ErrorBoundary from "@/common/ErrorBoundary";
 import { Suspense } from "react";
-import { useCart } from "./useCart";
+import { useItem } from "./useCart";
 
-export const ProductList = () => {
+export const Item = () => {
   return (
     <ErrorBoundary fallback={<div>カートの取得に失敗しました。</div>}>
       <Suspense fallback={<div>カートのローディング</div>}>
@@ -13,7 +13,7 @@ export const ProductList = () => {
 };
 
 const Inner = () => {
-  const { cart } = useCart({ userId: "1" });
+  const { cart } = useItem({ userId: "1" });
 
   if (cart.products.length === 0) {
     return <div>カートには何もありません。</div>;

@@ -3,7 +3,7 @@ import { generateProductMock } from "@/mocks/product";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { delay, http, HttpResponse } from "msw";
-import { ProductList as component } from ".";
+import { Item as component } from ".";
 
 const meta: Meta<typeof component> = {
   tags: ["autodocs"],

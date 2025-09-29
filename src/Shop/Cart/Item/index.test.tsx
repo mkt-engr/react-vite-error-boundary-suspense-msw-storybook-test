@@ -4,9 +4,9 @@ import { server } from "@/mocks/server";
 import { customRender } from "@/test/customRender";
 import { screen } from "@testing-library/react";
 import { delay, http, HttpResponse } from "msw";
-import { ProductList as Component } from ".";
+import { Item as Component } from ".";
 
-describe("ProductList", () => {
+describe("Item", () => {
   it("商品が3つある場合、商品一覧と合計金額が表示される", async () => {
     server.use(
       http.get("https://dummyjson.com/carts/1", () => {
