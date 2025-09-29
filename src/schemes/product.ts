@@ -1,25 +1,31 @@
 import z from "zod";
 
+const productIdSchema = z.number().int().positive();
+const productTitleSchema = z.string().nonempty();
+const productPriceSchema = z.number().nonnegative();
+const productDiscountPercentageSchema = z.number().nonnegative();
+const productThumbnailSchema = z.httpUrl();
+
 export const productSchema = z.object({
-  id: z.number().int().positive(),
-  title: z.string().nonempty(),
-  price: z.number().nonnegative(),
+  id: productIdSchema,
+  title: productTitleSchema,
+  price: productPriceSchema,
   quantity: z.number().nonnegative(),
   total: z.number().nonnegative(),
-  discountPercentage: z.number().nonnegative(),
+  discountPercentage: productDiscountPercentageSchema,
   discountedTotal: z.number().nonnegative(),
-  thumbnail: z.httpUrl(),
+  thumbnail: productThumbnailSchema,
 });
 
 export type Product = z.infer<typeof productSchema>;
 
 export const searchProductSchema = z.object({
-  id: z.number().int().positive(),
-  title: z.string().nonempty(),
+  id: productIdSchema,
+  title: productTitleSchema,
   description: z.string(),
   category: z.string(),
-  price: z.number().nonnegative(),
-  discountPercentage: z.number().nonnegative(),
+  price: productPriceSchema,
+  discountPercentage: productDiscountPercentageSchema,
   rating: z.number().min(0).max(5),
   stock: z.number().int().nonnegative(),
   brand: z.string().optional(),
@@ -27,7 +33,7 @@ export const searchProductSchema = z.object({
   weight: z.number().positive(),
   tags: z.array(z.string()),
   images: z.array(z.string()),
-  thumbnail: z.string(),
+  thumbnail: productThumbnailSchema,
 });
 
 export const productsSearchResponseSchema = z.object({
