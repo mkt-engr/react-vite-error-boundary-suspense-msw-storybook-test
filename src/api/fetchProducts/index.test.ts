@@ -1,4 +1,4 @@
-import { generateProductsSearchMock } from "@/mocks/product.mock";
+import { generateProductsSearchMock, generateProductInSearchMock } from "@/mocks/product.mock";
 import { server } from "@/mocks/server";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import { http, HttpResponse } from "msw";
@@ -8,7 +8,22 @@ describe("fetchProducts", () => {
   it("正常にProductsSearchResponseを返す", async () => {
     const mockData = generateProductsSearchMock({
       products: [
-        generateProductsSearchMock().products[0], // デフォルトの1つ目の商品を使用
+        generateProductInSearchMock({
+          id: 10,
+          title: "テスト商品",
+          description: "テスト用の商品説明",
+          category: "テストカテゴリ",
+          price: 1000,
+          discountPercentage: 5,
+          rating: 4.5,
+          stock: 20,
+          brand: "テストブランド",
+          sku: "TEST-SKU-001",
+          weight: 1.5,
+          tags: ["テスト", "商品"],
+          images: ["https://example.com/test-image.jpg"],
+          thumbnail: "https://example.com/test-thumb.jpg",
+        }),
       ],
       total: 1,
     });
@@ -22,7 +37,9 @@ describe("fetchProducts", () => {
     const result = await fetchProducts({ query: "test" });
 
     expect(result.products).toHaveLength(1);
-    expect(result.products[0].title).toBe("iPhone 15 Pro");
+    expect(result.products[0].title).toBe("テスト商品");
+    expect(result.products[0].description).toBe("テスト用の商品説明");
+    expect(result.products[0].price).toBe(1000);
     expect(result.total).toBe(1);
   });
 
@@ -39,9 +56,18 @@ describe("fetchProducts", () => {
   });
 
   it("不正なデータの場合はエラーを投げる", async () => {
+    const invalidData = generateProductsSearchMock({
+      products: [
+        generateProductInSearchMock({
+          id: "invalid" as unknown as number, // numberではなくstring
+          title: "テスト商品",
+        }),
+      ],
+    });
+
     server.use(
       http.get(generateApiUrl("/products/search"), () => {
-        return HttpResponse.json({ invalid: "data" });
+        return HttpResponse.json(invalidData);
       })
     );
 

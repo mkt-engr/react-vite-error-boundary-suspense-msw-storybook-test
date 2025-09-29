@@ -1,5 +1,5 @@
 import type { Product } from "@/schemes/product";
-import type { ProductsSearchResponse } from "@/api/fetchProducts/schemas";
+import type { ProductsSearchResponse, ProductInSearch } from "@/api/fetchProducts/schemas";
 
 export const generateProductMock = (
   override: Partial<Product> = {}
@@ -16,11 +16,31 @@ export const generateProductMock = (
   ...override,
 });
 
+export const generateProductInSearchMock = (
+  override: Partial<ProductInSearch> = {}
+): ProductInSearch => ({
+  id: 1,
+  title: "iPhone 15 Pro",
+  description: "最新のApple製スマートフォン",
+  category: "スマートフォン",
+  price: 159800,
+  discountPercentage: 12.96,
+  rating: 4.69,
+  stock: 94,
+  brand: "Apple",
+  sku: "WW013001",
+  weight: 2,
+  tags: ["スマートフォン", "Apple"],
+  images: ["https://example.com/image1.jpg"],
+  thumbnail: "https://example.com/thumb1.jpg",
+  ...override,
+});
+
 export const generateProductsSearchMock = (
   override: Partial<ProductsSearchResponse> = {}
 ): ProductsSearchResponse => ({
   products: [
-    {
+    generateProductInSearchMock({
       id: 1,
       title: "iPhone 15 Pro",
       description: "最新のApple製スマートフォン",
@@ -35,8 +55,8 @@ export const generateProductsSearchMock = (
       tags: ["スマートフォン", "Apple"],
       images: ["https://example.com/image1.jpg"],
       thumbnail: "https://example.com/thumb1.jpg",
-    },
-    {
+    }),
+    generateProductInSearchMock({
       id: 2,
       title: "MacBook Air M3",
       description: "軽量で高性能なMacBook Air",
@@ -51,8 +71,8 @@ export const generateProductsSearchMock = (
       tags: ["ノートパソコン", "Apple"],
       images: ["https://example.com/image2.jpg"],
       thumbnail: "https://example.com/thumb2.jpg",
-    },
-    {
+    }),
+    generateProductInSearchMock({
       id: 3,
       title: "Nintendo Switch OLED",
       description: "有機ELディスプレイ搭載のNintendo Switch",
@@ -67,7 +87,7 @@ export const generateProductsSearchMock = (
       tags: ["ゲーム機", "Nintendo"],
       images: ["https://example.com/image3.jpg"],
       thumbnail: "https://example.com/thumb3.jpg",
-    },
+    }),
   ],
   total: 3,
   skip: 0,

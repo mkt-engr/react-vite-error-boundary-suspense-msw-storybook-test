@@ -24,6 +24,8 @@ const productSchema = z.object({
   thumbnail: productThumbnailSchema,
 });
 
+export type ProductInSearch = z.infer<typeof productSchema>;
+
 export const productsSearchResponseSchema = z.object({
   products: productSchema.array(),
   total: z.number().int().nonnegative(),
