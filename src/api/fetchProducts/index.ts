@@ -1,7 +1,7 @@
 import {
   productsSearchResponseSchema,
   type ProductsSearchResponse,
-} from "@/schemes/product";
+} from "./schemas";
 import { generateApiUrl } from "@/test/generateApiUrl";
 
 type Args = {

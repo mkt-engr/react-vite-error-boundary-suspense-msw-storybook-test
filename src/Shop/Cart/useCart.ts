@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { fetchCartByUserId } from "./fetchCartByUserId";
+import { fetchCartByUserId } from "@/api/fetchCartByUserId";
 
 type Args = {
   userId: string;

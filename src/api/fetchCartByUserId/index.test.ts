@@ -2,7 +2,7 @@ import { server } from "@/mocks/server";
 import type { Cart } from "@/schemes/cart";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import { http, HttpResponse } from "msw";
-import { fetchCartByUserId } from "./fetchCartByUserId";
+import { fetchCartByUserId } from ".";
 
 describe("fetchCartByUserId", () => {
   it("パースに成功する場合、カートデータが返される", async () => {
