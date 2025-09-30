@@ -5,7 +5,7 @@ import { useItem } from "./useCart";
 export const Content = () => {
   return (
     <ErrorBoundary fallback={<div>カートの取得に失敗しました。</div>}>
-      <Suspense fallback={<div>カートのローディング</div>}>
+      <Suspense fallback={<div>カートの読み込み中...</div>}>
         <Inner />
       </Suspense>
     </ErrorBoundary>
