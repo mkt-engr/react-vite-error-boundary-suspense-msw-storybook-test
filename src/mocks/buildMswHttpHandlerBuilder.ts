@@ -1,4 +1,5 @@
 import {
+  delay,
   http,
   HttpHandler,
   HttpResponse,
@@ -6,13 +7,28 @@ import {
   type Path,
 } from "msw";
 
-type MswHttpHandlerBuilderProps = {
+type SuccessHandlerOptions = {
   response?: JsonBodyType;
-  status?: number;
-  statusText?: string;
   onPathParams?: (params: unknown) => void;
   onRequestBody?: (body: unknown) => void;
   onRequestSearchParams?: (searchParams: URLSearchParams) => void;
+};
+
+type LoadingHandlerOptions = {
+  delay?: number;
+  response?: JsonBodyType;
+};
+
+type ErrorHandlerOptions = {
+  status: number;
+  errorCode?: string;
+  statusText?: string;
+};
+
+type MswHttpHandlerMethods = {
+  success: (options?: SuccessHandlerOptions) => HttpHandler;
+  loading: (options?: LoadingHandlerOptions) => HttpHandler;
+  error: (options: ErrorHandlerOptions) => HttpHandler;
 };
 
 type BuildMswHttpHandlerBuilderProps = {
@@ -28,55 +44,87 @@ type BuildMswHttpHandlerBuilderProps = {
  *
  * @example
  * // ハンドラー生成用関数を作成（デフォルトレスポンス付き）
- * export const buildGetUsersMswHandler =
- *  buildMswHttpHandlerBuilder({
- *  path: "/api/v1/users",
- *  method: "get",
- *  defaultResponse: generateUsersMock(),
- *  });
- *
- * // デフォルトレスポンスを使う
- * const handler1 = buildGetUsersMswHandler({});
- *
- * // レスポンスを上書き
- * const handler2 = buildGetUsersMswHandler({
- *  response: { items: [generateMockUser({ name: "JX太郎" })] },
+ * const handlers = buildMswHttpHandlerBuilder({
+ *   path: "/api/v1/users",
+ *   method: "get",
+ *   defaultResponse: generateUsersMock(),
  * });
  *
+ * // 正常系: デフォルトレスポンスを使う
+ * const successHandler1 = handlers.success();
+ *
+ * // 正常系: レスポンスを上書き
+ * const successHandler2 = handlers.success({
+ *   response: { items: [generateMockUser({ name: "JX太郎" })] },
+ * });
+ *
+ * // 正常系: リクエストをキャプチャ
  * const onRequestSearchParams = vi.fn();
  * const onPathParams = vi.fn();
  * const onRequestBody = vi.fn();
- *
- * const buildPatchUserMswHandler = buildMswHttpHandlerBuilder({
- *  path: "/api/users/:id",
- *  method: "patch",
+ * const successHandler3 = handlers.success({
+ *   response: { id: 123, name: "更新太郎" },
+ *   onRequestSearchParams,
+ *   onPathParams,
+ *   onRequestBody,
  * });
  *
- * server.use(
- *  buildPatchUserMswHandler({
- *  response: { id: 123, name: "更新太郎" },
- *  onRequestSearchParams,
- *  onPathParams,
- *  onRequestBody,
- * })
- * );
+ * // 異常系: エラーコード付き
+ * const errorHandler1 = handlers.error({
+ *   status: 404,
+ *   errorCode: "NOT_FOUND",
+ * });
+ *
+ * // 異常系: エラーコードなし
+ * const errorHandler2 = handlers.error({ status: 500 });
+ *
+ * // loading: 無限ローディング（デフォルトレスポンス使用）
+ * const loadingHandler1 = handlers.loading();
+ *
+ * // loading: 3秒後に正常レスポンス
+ * const loadingHandler2 = handlers.loading({ delay: 3000 });
+ *
+ * // loading: 無限ローディング（レスポンス上書き）
+ * const loadingHandler3 = handlers.loading({
+ *   response: generateMockUser({ name: "カスタムユーザー" }),
+ * });
  *
  * @param param0
- * @returns HttpHandler
+ * @returns MswHttpHandlerMethods
  */
 export const buildMswHttpHandlerBuilder = ({
   path,
   method,
   defaultResponse,
-}: BuildMswHttpHandlerBuilderProps) => {
-  return (props: MswHttpHandlerBuilderProps = {}): HttpHandler =>
-    http[method](path, async (req) => {
-      props.onRequestSearchParams?.(new URL(req.request.url).searchParams);
-      props.onPathParams?.(req.params);
-      props.onRequestBody?.(await req.request.json());
-      return HttpResponse.json(props.response ?? defaultResponse, {
-        status: props.status ?? 200,
-        statusText: props.statusText ?? "ok",
-      });
-    });
+}: BuildMswHttpHandlerBuilderProps): MswHttpHandlerMethods => {
+  return {
+    success: (options: SuccessHandlerOptions = {}): HttpHandler =>
+      http[method](path, async (req) => {
+        options.onRequestSearchParams?.(new URL(req.request.url).searchParams);
+        options.onPathParams?.(req.params);
+        options.onRequestBody?.(await req.request.json());
+        return HttpResponse.json(options.response ?? defaultResponse, {
+          status: 200,
+          statusText: "ok",
+        });
+      }),
+
+    loading: (options: LoadingHandlerOptions = {}): HttpHandler =>
+      http[method](path, async () => {
+        await delay(options.delay ?? "infinite");
+        return HttpResponse.json(options.response ?? defaultResponse, {
+          status: 200,
+          statusText: "ok",
+        });
+      }),
+
+    error: (options: ErrorHandlerOptions): HttpHandler =>
+      http[method](path, async () => {
+        const responseBody = options.errorCode ? { code: options.errorCode } : null;
+        return HttpResponse.json(responseBody, {
+          status: options.status,
+          statusText: options.statusText ?? "error",
+        });
+      }),
+  };
 };
