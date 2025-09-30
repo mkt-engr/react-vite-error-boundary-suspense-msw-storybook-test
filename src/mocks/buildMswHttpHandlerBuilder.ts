@@ -43,6 +43,24 @@ type BuildMswHttpHandlerBuilderProps = {
  *  response: { items: [generateMockUser({ name: "JX太郎" })] },
  * });
  *
+ * const onRequestSearchParams = vi.fn();
+ * const onPathParams = vi.fn();
+ * const onRequestBody = vi.fn();
+ *
+ * const buildPatchUserMswHandler = buildMswHttpHandlerBuilder({
+ *  path: "/api/users/:id",
+ *  method: "patch",
+ * });
+ *
+ * server.use(
+ *  buildPatchUserMswHandler({
+ *  response: { id: 123, name: "更新太郎" },
+ *  onRequestSearchParams,
+ *  onPathParams,
+ *  onRequestBody,
+ * })
+ * );
+ *
  * @param param0
  * @returns HttpHandler
  */
