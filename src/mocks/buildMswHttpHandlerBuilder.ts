@@ -101,6 +101,7 @@ export const buildMswHttpHandlerBuilder = ({
     success: (options: SuccessHandlerOptions = {}): HttpHandler =>
       http[method](path, async (req) => {
         options.onRequestSearchParams?.(new URL(req.request.url).searchParams);
+        /** @link {https://mswjs.io/docs/api/http/#httpget} ここでパスパラメータを取得できる */
         options.onPathParams?.(req.params);
         options.onRequestBody?.(await req.request.json());
         return HttpResponse.json(options.response ?? defaultResponse, {
@@ -120,8 +121,7 @@ export const buildMswHttpHandlerBuilder = ({
 
     error: (options: ErrorHandlerOptions): HttpHandler =>
       http[method](path, async () => {
-        const responseBody = options.errorCode ? { code: options.errorCode } : null;
-        return HttpResponse.json(responseBody, {
+        return HttpResponse.json(null, {
           status: options.status,
           statusText: options.statusText ?? "error",
         });
