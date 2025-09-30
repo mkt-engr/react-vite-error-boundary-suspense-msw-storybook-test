@@ -122,7 +122,7 @@ export const buildMswHttpHandlerBuilder = ({
     error: (options: ErrorHandlerOptions): HttpHandler =>
       http[method](path, async () => {
         return HttpResponse.json(null, {
-          status: options.status,
+          status: options.status ?? 500,
           statusText: options.statusText ?? "error",
         });
       }),
