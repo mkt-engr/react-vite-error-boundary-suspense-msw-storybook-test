@@ -1,10 +1,10 @@
-import { Item } from "./Item";
+import { Content } from "./Content";
 
 export const Cart = () => {
   return (
     <div>
-      <h2>カート</h2>
-      <Item />
+      <h2>カートの中身</h2>
+      <Content />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useDeferredValue, useState } from "react";
-import { Results } from "./Result";
+import { Result } from "./Result";
 
 export const ProductList = () => {
   const [query, setQuery] = useState("");
@@ -17,7 +17,7 @@ export const ProductList = () => {
         />
       </label>
       {query !== deferredQuery ? <span>検索中</span> : null}
-      <Results query={deferredQuery} />
+      <Result query={deferredQuery} />
     </main>
   );
 };

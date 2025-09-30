@@ -4,7 +4,7 @@ import { customRender } from "@/test/customRender";
 import { generateApiUrl } from "@/test/generateApiUrl";
 import { screen } from "@testing-library/react";
 import { delay, http, HttpResponse } from "msw";
-import { Results } from ".";
+import { Result } from ".";
 
 describe("Results", () => {
   it("商品が3つある場合、商品一覧と件数が表示される", async () => {
@@ -68,7 +68,7 @@ describe("Results", () => {
       })
     );
 
-    customRender(<Results query="" />);
+    customRender(<Result query="" />);
 
     await screen.findByText("商品件数:3件");
 
@@ -89,7 +89,7 @@ describe("Results", () => {
       })
     );
 
-    customRender(<Results query="" />);
+    customRender(<Result query="" />);
 
     expect(
       await screen.findByText("商品がありませんでした。")
@@ -103,7 +103,7 @@ describe("Results", () => {
       })
     );
 
-    customRender(<Results query="test" />);
+    customRender(<Result query="test" />);
 
     expect(screen.getByText("商品一覧を読み込み中...")).toBeInTheDocument();
   });
@@ -115,9 +115,11 @@ describe("Results", () => {
       })
     );
 
-    customRender(<Results query="test" />);
+    customRender(<Result query="test" />);
 
-    expect(await screen.findByText("商品一覧でエラーが発生しました")).toBeInTheDocument();
+    expect(
+      await screen.findByText("商品一覧でエラーが発生しました")
+    ).toBeInTheDocument();
   });
 
   it("検索クエリが渡されている場合、クエリパラメータが含まれる", async () => {
@@ -135,7 +137,7 @@ describe("Results", () => {
       })
     );
 
-    customRender(<Results query="iphone" />);
+    customRender(<Result query="iphone" />);
 
     await screen.findByText("商品がありませんでした。");
 

@@ -2,7 +2,7 @@ import ErrorBoundary from "@/common/ErrorBoundary";
 import { Suspense } from "react";
 import { useItem } from "./useCart";
 
-export const Item = () => {
+export const Content = () => {
   return (
     <ErrorBoundary fallback={<div>カートの取得に失敗しました。</div>}>
       <Suspense fallback={<div>カートのローディング</div>}>
