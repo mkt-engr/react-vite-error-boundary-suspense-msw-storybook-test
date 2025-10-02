@@ -1,8 +1,8 @@
 import { generateApiUrl } from "@/test/generateApiUrl";
 import { generateQuoteMock } from ".";
-import { buildMswHttpHandlerBuilder } from "../buildMswHttpHandlerBuilder";
+import { buildHttpHandlerBuilder } from "../buildHttpHandlerBuilder";
 
-export const buildGetQuoteMswHandler = buildMswHttpHandlerBuilder({
+export const buildGetQuoteMswHandler = buildHttpHandlerBuilder({
   path: generateApiUrl("/quotes/random"),
   method: "get",
   defaultResponse: generateQuoteMock(),

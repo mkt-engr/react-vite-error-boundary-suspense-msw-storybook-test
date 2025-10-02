@@ -1,8 +1,8 @@
-import { generateProductsSearchMock } from ".";
-import { buildMswHttpHandlerBuilder } from "../buildMswHttpHandlerBuilder";
 import { generateApiUrl } from "@/test/generateApiUrl";
+import { generateProductsSearchMock } from ".";
+import { buildHttpHandlerBuilder } from "../buildHttpHandlerBuilder";
 
-export const buildGetProductsSearchMswHandler = buildMswHttpHandlerBuilder({
+export const buildGetProductsSearchMswHandler = buildHttpHandlerBuilder({
   path: generateApiUrl("/products/search"),
   method: "get",
   defaultResponse: generateProductsSearchMock(),

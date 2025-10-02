@@ -25,13 +25,13 @@ type ErrorHandlerOptions = {
   statusText?: string;
 };
 
-type MswHttpHandlerMethods = {
+type HttpHandlerMethods = {
   success: (options?: SuccessHandlerOptions) => HttpHandler;
   loading: (options?: LoadingHandlerOptions) => HttpHandler;
   error: (options: ErrorHandlerOptions) => HttpHandler;
 };
 
-type BuildMswHttpHandlerBuilderProps = {
+type BuildHttpHandlerBuilderOptions = {
   path: Path;
   method: keyof typeof http;
   defaultResponse?: JsonBodyType;
@@ -92,11 +92,11 @@ type BuildMswHttpHandlerBuilderProps = {
  * @param param0
  * @returns MswHttpHandlerMethods
  */
-export const buildMswHttpHandlerBuilder = ({
+export const buildHttpHandlerBuilder = ({
   path,
   method,
   defaultResponse,
-}: BuildMswHttpHandlerBuilderProps): MswHttpHandlerMethods => {
+}: BuildHttpHandlerBuilderOptions): HttpHandlerMethods => {
   return {
     success: (options: SuccessHandlerOptions = {}): HttpHandler =>
       http[method](path, async (req) => {
