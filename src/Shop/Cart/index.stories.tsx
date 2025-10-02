@@ -1,5 +1,5 @@
 import { generateCartMock } from "@/mocks/cart";
-import { buildGetCartMswHandler } from "@/mocks/cart/handler";
+import { buildGetCartHandler } from "@/mocks/cart/handler";
 import { generateProductMock } from "@/mocks/product";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Cart as component } from ".";
@@ -26,7 +26,7 @@ export const Default: Story = {
   parameters: {
     msw: {
       handlers: [
-        buildGetCartMswHandler.success({
+        buildGetCartHandler.success({
           response: generateCartMock({
             products: [1, 2, 3].map((num) =>
               generateProductMock({ title: `商品${num}` })
@@ -42,7 +42,7 @@ export const NoProductInCart: Story = {
   parameters: {
     msw: {
       handlers: [
-        buildGetCartMswHandler.success({
+        buildGetCartHandler.success({
           response: generateCartMock({
             products: [],
             total: 0,
@@ -60,7 +60,7 @@ export const Loading: Story = {
   parameters: {
     msw: {
       handlers: [
-        buildGetCartMswHandler.loading(),
+        buildGetCartHandler.loading(),
       ],
     },
   },
@@ -70,7 +70,7 @@ export const Error: Story = {
   parameters: {
     msw: {
       handlers: [
-        buildGetCartMswHandler.error({ status: 500 }),
+        buildGetCartHandler.error({ status: 500 }),
       ],
     },
   },

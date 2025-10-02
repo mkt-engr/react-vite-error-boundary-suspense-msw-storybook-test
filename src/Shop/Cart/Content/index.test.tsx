@@ -1,5 +1,5 @@
 import { generateCartMock } from "@/mocks/cart";
-import { buildGetCartMswHandler } from "@/mocks/cart/handler";
+import { buildGetCartHandler } from "@/mocks/cart/handler";
 import { generateProductMock } from "@/mocks/product";
 import { server } from "@/mocks/server";
 import { customRender } from "@/test/customRender";
@@ -9,7 +9,7 @@ import { Content as Component } from ".";
 describe("Content", () => {
   it("商品が3つある場合、商品一覧と合計金額が表示される", async () => {
     server.use(
-      buildGetCartMswHandler.success({
+      buildGetCartHandler.success({
         response: generateCartMock({
           products: [1, 2, 3].map((num) =>
             generateProductMock({ id: num, title: `商品${num}` })
@@ -30,7 +30,7 @@ describe("Content", () => {
 
   it("商品が多数ある場合、すべての商品が表示される", async () => {
     server.use(
-      buildGetCartMswHandler.success({
+      buildGetCartHandler.success({
         response: generateCartMock({
           products: [1, 2, 3, 4, 5, 6, 7, 8].map((num) =>
             generateProductMock({ id: num, title: `商品${num}` })
@@ -51,7 +51,7 @@ describe("Content", () => {
 
   it("商品が0の場合、空カートメッセージが表示される", async () => {
     server.use(
-      buildGetCartMswHandler.success({
+      buildGetCartHandler.success({
         response: generateCartMock({
           products: [],
           total: 0,
@@ -71,7 +71,7 @@ describe("Content", () => {
 
   it("ローディング中はローディングメッセージが表示される", async () => {
     server.use(
-      buildGetCartMswHandler.loading()
+      buildGetCartHandler.loading()
     );
 
     customRender(<Component />);
@@ -81,7 +81,7 @@ describe("Content", () => {
 
   it("エラー発生時はエラーメッセージが表示される", async () => {
     server.use(
-      buildGetCartMswHandler.error({ status: 500 })
+      buildGetCartHandler.error({ status: 500 })
     );
 
     customRender(<Component />);

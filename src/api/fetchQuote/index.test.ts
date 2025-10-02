@@ -1,5 +1,5 @@
 import { generateQuoteMock } from "@/mocks/quota";
-import { buildGetQuoteMswHandler } from "@/mocks/quota/handler";
+import { buildGetQuoteHandler } from "@/mocks/quota/handler";
 import { server } from "@/mocks/server";
 import { fetchQuote } from ".";
 
@@ -12,7 +12,7 @@ describe("fetchQuote", () => {
     });
 
     server.use(
-      buildGetQuoteMswHandler.success({
+      buildGetQuoteHandler.success({
         response: mockQuote
       })
     );
@@ -26,7 +26,7 @@ describe("fetchQuote", () => {
 
   it("HTTPエラーの場合はエラーを投げる", async () => {
     server.use(
-      buildGetQuoteMswHandler.error({ status: 500 })
+      buildGetQuoteHandler.error({ status: 500 })
     );
 
     await expect(fetchQuote()).rejects.toThrow("HTTP error! status: 500");
@@ -34,7 +34,7 @@ describe("fetchQuote", () => {
 
   it("不正なデータの場合はエラーを投げる", async () => {
     server.use(
-      buildGetQuoteMswHandler.success({
+      buildGetQuoteHandler.success({
         response: { invalid: "data" } as any
       })
     );

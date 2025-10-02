@@ -1,5 +1,5 @@
 import { generateProductsSearchMock, generateProductInSearchMock } from "@/mocks/product";
-import { buildGetProductsSearchMswHandler } from "@/mocks/product/handler";
+import { buildGetProductsSearchHandler } from "@/mocks/product/handler";
 import { server } from "@/mocks/server";
 import { vi } from "vitest";
 import { fetchProducts } from ".";
@@ -29,7 +29,7 @@ describe("fetchProducts", () => {
     });
 
     server.use(
-      buildGetProductsSearchMswHandler.success({
+      buildGetProductsSearchHandler.success({
         response: mockData
       })
     );
@@ -45,7 +45,7 @@ describe("fetchProducts", () => {
 
   it("HTTPエラーの場合はエラーを投げる", async () => {
     server.use(
-      buildGetProductsSearchMswHandler.error({ status: 500 })
+      buildGetProductsSearchHandler.error({ status: 500 })
     );
 
     await expect(fetchProducts({ query: "test" })).rejects.toThrow(
@@ -64,7 +64,7 @@ describe("fetchProducts", () => {
     });
 
     server.use(
-      buildGetProductsSearchMswHandler.success({
+      buildGetProductsSearchHandler.success({
         response: invalidData
       })
     );
@@ -79,7 +79,7 @@ describe("fetchProducts", () => {
     const capturedSearchParams = vi.fn();
 
     server.use(
-      buildGetProductsSearchMswHandler.success({
+      buildGetProductsSearchHandler.success({
         response: generateProductsSearchMock({
           products: [],
           total: 0,

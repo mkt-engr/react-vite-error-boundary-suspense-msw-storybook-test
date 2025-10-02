@@ -1,5 +1,5 @@
 import { generateQuoteMock } from "@/mocks/quota";
-import { buildGetQuoteMswHandler } from "@/mocks/quota/handler";
+import { buildGetQuoteHandler } from "@/mocks/quota/handler";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Content as component } from ".";
 
@@ -24,7 +24,7 @@ export const Default: Story = {
   parameters: {
     msw: {
       handlers: [
-        buildGetQuoteMswHandler.success({
+        buildGetQuoteHandler.success({
           response: generateQuoteMock({
             id: 1,
             quote: "君のような勘のいいガキは嫌いだよ",
@@ -40,7 +40,7 @@ export const LongQuote: Story = {
   parameters: {
     msw: {
       handlers: [
-        buildGetQuoteMswHandler.success({
+        buildGetQuoteHandler.success({
           response: generateQuoteMock({
             id: 2,
             quote:
@@ -57,7 +57,7 @@ export const Loading: Story = {
   parameters: {
     msw: {
       handlers: [
-        buildGetQuoteMswHandler.loading(),
+        buildGetQuoteHandler.loading(),
       ],
     },
   },
@@ -67,7 +67,7 @@ export const Error: Story = {
   parameters: {
     msw: {
       handlers: [
-        buildGetQuoteMswHandler.error({ status: 500 }),
+        buildGetQuoteHandler.error({ status: 500 }),
       ],
     },
   },

@@ -1,5 +1,5 @@
 import { generateProductsSearchMock, generateProductInSearchMock } from "@/mocks/product";
-import { buildGetProductsSearchMswHandler } from "@/mocks/product/handler";
+import { buildGetProductsSearchHandler } from "@/mocks/product/handler";
 import { server } from "@/mocks/server";
 import { customRender } from "@/test/customRender";
 import { screen } from "@testing-library/react";
@@ -9,7 +9,7 @@ import { Result } from ".";
 describe("Results", () => {
   it("商品が3つある場合、商品一覧と件数が表示される", async () => {
     server.use(
-      buildGetProductsSearchMswHandler.success({
+      buildGetProductsSearchHandler.success({
         response: generateProductsSearchMock({
           products: [
             generateProductInSearchMock({
@@ -50,7 +50,7 @@ describe("Results", () => {
 
   it("商品が0の場合、商品がないメッセージが表示される", async () => {
     server.use(
-      buildGetProductsSearchMswHandler.success({
+      buildGetProductsSearchHandler.success({
         response: generateProductsSearchMock({
           products: [],
           total: 0,
@@ -67,7 +67,7 @@ describe("Results", () => {
 
   it("ローディング中はローディングメッセージが表示される", async () => {
     server.use(
-      buildGetProductsSearchMswHandler.loading()
+      buildGetProductsSearchHandler.loading()
     );
 
     customRender(<Result query="test" />);
@@ -77,7 +77,7 @@ describe("Results", () => {
 
   it("エラー発生時はエラーメッセージが表示される", async () => {
     server.use(
-      buildGetProductsSearchMswHandler.error({ status: 500 })
+      buildGetProductsSearchHandler.error({ status: 500 })
     );
 
     customRender(<Result query="test" />);
@@ -92,7 +92,7 @@ describe("Results", () => {
     const capturedSearchParams = vi.fn();
 
     server.use(
-      buildGetProductsSearchMswHandler.success({
+      buildGetProductsSearchHandler.success({
         response: generateProductsSearchMock({
           products: [],
           total: 0,
