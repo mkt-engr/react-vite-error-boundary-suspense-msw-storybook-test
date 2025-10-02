@@ -1,8 +1,7 @@
 import { generateCartMock } from "@/mocks/cart";
+import { buildGetCartMswHandler } from "@/mocks/cart/handler";
 import { generateProductMock } from "@/mocks/product";
-import { generateApiUrl } from "@/test/generateApiUrl";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { delay, http, HttpResponse } from "msw";
 import { Cart as component } from ".";
 
 const meta: Meta<typeof component> = {
@@ -27,14 +26,12 @@ export const Default: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("/carts/1"), () => {
-          return HttpResponse.json(
-            generateCartMock({
-              products: [1, 2, 3].map((num) =>
-                generateProductMock({ title: `商品${num}` })
-              ),
-            })
-          );
+        buildGetCartMswHandler.success({
+          response: generateCartMock({
+            products: [1, 2, 3].map((num) =>
+              generateProductMock({ title: `商品${num}` })
+            ),
+          })
         }),
       ],
     },
@@ -45,16 +42,14 @@ export const NoProductInCart: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("/carts/1"), () => {
-          return HttpResponse.json(
-            generateCartMock({
-              products: [],
-              total: 0,
-              discountedTotal: 0,
-              totalProducts: 0,
-              totalQuantity: 0,
-            })
-          );
+        buildGetCartMswHandler.success({
+          response: generateCartMock({
+            products: [],
+            total: 0,
+            discountedTotal: 0,
+            totalProducts: 0,
+            totalQuantity: 0,
+          })
         }),
       ],
     },
@@ -65,9 +60,7 @@ export const Loading: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("/carts/1"), async () => {
-          await delay("infinite");
-        }),
+        buildGetCartMswHandler.loading(),
       ],
     },
   },
@@ -77,9 +70,7 @@ export const Error: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("/carts/1"), () => {
-          return new HttpResponse(null, { status: 500 });
-        }),
+        buildGetCartMswHandler.error({ status: 500 }),
       ],
     },
   },

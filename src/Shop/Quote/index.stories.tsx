@@ -1,7 +1,6 @@
 import { generateQuoteMock } from "@/mocks/quota";
-import { generateApiUrl } from "@/test/generateApiUrl";
+import { buildGetQuoteMswHandler } from "@/mocks/quota/handler";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { delay, http, HttpResponse } from "msw";
 import { Quote as component } from ".";
 
 const meta: Meta<typeof component> = {
@@ -25,14 +24,12 @@ export const Default: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("/quotes/random"), () => {
-          return HttpResponse.json(
-            generateQuoteMock({
-              id: 1,
-              quote: "君のような勘のいいガキは嫌いだよ",
-              author: "ショウ・タッカー",
-            })
-          );
+        buildGetQuoteMswHandler.success({
+          response: generateQuoteMock({
+            id: 1,
+            quote: "君のような勘のいいガキは嫌いだよ",
+            author: "ショウ・タッカー",
+          })
         }),
       ],
     },
@@ -43,15 +40,13 @@ export const LongQuote: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("/quotes/random"), () => {
-          return HttpResponse.json(
-            generateQuoteMock({
-              id: 2,
-              quote:
-                "The way to get started is to quit talking and begin doing. Don't be afraid to give up the good to go for the great. Innovation distinguishes between a leader and a follower.",
-              author: "Walt Disney & Steve Jobs",
-            })
-          );
+        buildGetQuoteMswHandler.success({
+          response: generateQuoteMock({
+            id: 2,
+            quote:
+              "The way to get started is to quit talking and begin doing. Don't be afraid to give up the good to go for the great. Innovation distinguishes between a leader and a follower.",
+            author: "Walt Disney & Steve Jobs",
+          })
         }),
       ],
     },
@@ -62,9 +57,7 @@ export const Loading: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("/quotes/random"), async () => {
-          await delay("infinite");
-        }),
+        buildGetQuoteMswHandler.loading(),
       ],
     },
   },
@@ -74,9 +67,7 @@ export const Error: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("/quotes/random"), () => {
-          return new HttpResponse(null, { status: 500 });
-        }),
+        buildGetQuoteMswHandler.error({ status: 500 }),
       ],
     },
   },

@@ -1,23 +1,21 @@
 import { generateCartMock } from "@/mocks/cart";
+import { buildGetCartMswHandler } from "@/mocks/cart/handler";
 import { generateProductMock } from "@/mocks/product";
 import { server } from "@/mocks/server";
 import { customRender } from "@/test/customRender";
 import { screen } from "@testing-library/react";
-import { delay, http, HttpResponse } from "msw";
 import { Cart as Component } from ".";
 
 describe("Cart", () => {
   it("商品が3つある場合、商品一覧と合計金額が表示される", async () => {
     server.use(
-      http.get("https://dummyjson.com/carts/1", () => {
-        return HttpResponse.json(
-          generateCartMock({
-            products: [1, 2, 3].map((num) =>
-              generateProductMock({ id: num, title: `商品${num}` })
-            ),
-            total: 800,
-          })
-        );
+      buildGetCartMswHandler.success({
+        response: generateCartMock({
+          products: [1, 2, 3].map((num) =>
+            generateProductMock({ id: num, title: `商品${num}` })
+          ),
+          total: 800,
+        })
       })
     );
 
@@ -32,16 +30,14 @@ describe("Cart", () => {
 
   it("商品が0の場合、空カートメッセージが表示される", async () => {
     server.use(
-      http.get("https://dummyjson.com/carts/1", () => {
-        return HttpResponse.json(
-          generateCartMock({
-            products: [],
-            total: 0,
-            discountedTotal: 0,
-            totalProducts: 0,
-            totalQuantity: 0,
-          })
-        );
+      buildGetCartMswHandler.success({
+        response: generateCartMock({
+          products: [],
+          total: 0,
+          discountedTotal: 0,
+          totalProducts: 0,
+          totalQuantity: 0,
+        })
       })
     );
 
@@ -54,9 +50,7 @@ describe("Cart", () => {
 
   it("ローディング中はローディングメッセージが表示される", async () => {
     server.use(
-      http.get("https://dummyjson.com/carts/1", async () => {
-        await delay("infinite");
-      })
+      buildGetCartMswHandler.loading()
     );
 
     customRender(<Component />);
@@ -66,9 +60,7 @@ describe("Cart", () => {
 
   it("エラー発生時はエラーメッセージが表示される", async () => {
     server.use(
-      http.get("https://dummyjson.com/carts/1", () => {
-        return new HttpResponse(null, { status: 500 });
-      })
+      buildGetCartMswHandler.error({ status: 500 })
     );
 
     customRender(<Component />);

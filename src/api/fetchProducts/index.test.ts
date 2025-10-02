@@ -1,7 +1,7 @@
 import { generateProductsSearchMock, generateProductInSearchMock } from "@/mocks/product";
+import { buildGetProductsSearchMswHandler } from "@/mocks/product/handler";
 import { server } from "@/mocks/server";
-import { generateApiUrl } from "@/test/generateApiUrl";
-import { http, HttpResponse } from "msw";
+import { vi } from "vitest";
 import { fetchProducts } from ".";
 
 describe("fetchProducts", () => {
@@ -29,8 +29,8 @@ describe("fetchProducts", () => {
     });
 
     server.use(
-      http.get(generateApiUrl("/products/search"), () => {
-        return HttpResponse.json(mockData);
+      buildGetProductsSearchMswHandler.success({
+        response: mockData
       })
     );
 
@@ -45,9 +45,7 @@ describe("fetchProducts", () => {
 
   it("HTTPエラーの場合はエラーを投げる", async () => {
     server.use(
-      http.get(generateApiUrl("/products/search"), () => {
-        return new HttpResponse(null, { status: 500 });
-      })
+      buildGetProductsSearchMswHandler.error({ status: 500 })
     );
 
     await expect(fetchProducts({ query: "test" })).rejects.toThrow(
@@ -66,8 +64,8 @@ describe("fetchProducts", () => {
     });
 
     server.use(
-      http.get(generateApiUrl("/products/search"), () => {
-        return HttpResponse.json(invalidData);
+      buildGetProductsSearchMswHandler.success({
+        response: invalidData
       })
     );
 
@@ -78,14 +76,18 @@ describe("fetchProducts", () => {
 
   it("クエリパラメータが正しく含まれる", async () => {
     let capturedUrl = "";
+    const capturedSearchParams = vi.fn();
 
     server.use(
-      http.get(generateApiUrl("/products/search"), ({ request }) => {
-        capturedUrl = request.url;
-        return HttpResponse.json(generateProductsSearchMock({
+      buildGetProductsSearchMswHandler.success({
+        response: generateProductsSearchMock({
           products: [],
           total: 0,
-        }));
+        }),
+        onRequestSearchParams: (searchParams) => {
+          capturedUrl = `https://dummyjson.com/products/search?${searchParams.toString()}`;
+          capturedSearchParams(searchParams);
+        }
       })
     );
 

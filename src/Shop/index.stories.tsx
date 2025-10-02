@@ -1,6 +1,7 @@
-import { generateApiUrl } from "@/test/generateApiUrl";
+import { buildGetCartMswHandler } from "@/mocks/cart/handler";
+import { buildGetProductsSearchMswHandler } from "@/mocks/product/handler";
+import { buildGetQuoteMswHandler } from "@/mocks/quota/handler";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { delay, http, HttpResponse } from "msw";
 import { Shop as component } from ".";
 
 const meta: Meta<typeof component> = {
@@ -17,15 +18,9 @@ export const Loading: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("/carts/1"), async () => {
-          await delay("infinite");
-        }),
-        http.get(generateApiUrl("/products/search"), async () => {
-          await delay("infinite");
-        }),
-        http.get(generateApiUrl("/quotes/random"), async () => {
-          await delay("infinite");
-        }),
+        buildGetCartMswHandler.loading(),
+        buildGetProductsSearchMswHandler.loading(),
+        buildGetQuoteMswHandler.loading(),
       ],
     },
   },
@@ -35,15 +30,9 @@ export const Error: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get(generateApiUrl("/carts/1"), () => {
-          return new HttpResponse(null, { status: 500 });
-        }),
-        http.get(generateApiUrl("/products/search"), () => {
-          return new HttpResponse(null, { status: 500 });
-        }),
-        http.get(generateApiUrl("/quotes/random"), () => {
-          return new HttpResponse(null, { status: 500 });
-        }),
+        buildGetCartMswHandler.error({ status: 500 }),
+        buildGetProductsSearchMswHandler.error({ status: 500 }),
+        buildGetQuoteMswHandler.error({ status: 500 }),
       ],
     },
   },

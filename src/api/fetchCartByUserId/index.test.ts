@@ -1,8 +1,7 @@
 import { generateCartMock } from "@/mocks/cart";
+import { buildGetCartMswHandler } from "@/mocks/cart/handler";
 import { generateProductMock } from "@/mocks/product";
 import { server } from "@/mocks/server";
-import { generateApiUrl } from "@/test/generateApiUrl";
-import { http, HttpResponse } from "msw";
 import { fetchCartByUserId } from ".";
 
 describe("fetchCartByUserId", () => {
@@ -29,8 +28,8 @@ describe("fetchCartByUserId", () => {
     });
 
     server.use(
-      http.get(generateApiUrl("/carts/1"), () => {
-        return HttpResponse.json(mockCart);
+      buildGetCartMswHandler.success({
+        response: mockCart
       })
     );
 
@@ -69,8 +68,8 @@ describe("fetchCartByUserId", () => {
     });
 
     server.use(
-      http.get(generateApiUrl("/carts/1"), () => {
-        return HttpResponse.json(invalidCart);
+      buildGetCartMswHandler.success({
+        response: invalidCart
       })
     );
 
@@ -81,9 +80,7 @@ describe("fetchCartByUserId", () => {
 
   it("500エラーレスポンスの場合、HTTPエラーがスローされる", async () => {
     server.use(
-      http.get(generateApiUrl("/carts/1"), () => {
-        return new HttpResponse(null, { status: 500 });
-      })
+      buildGetCartMswHandler.error({ status: 500 })
     );
 
     await expect(fetchCartByUserId({ userId: "1" })).rejects.toThrow(
