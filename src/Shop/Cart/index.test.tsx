@@ -61,7 +61,7 @@ describe("Cart", () => {
 
     customRender(<Component />);
 
-    expect(screen.getByText("カートのローディング")).toBeInTheDocument();
+    expect(screen.getByText("カートの読み込み中...")).toBeInTheDocument();
   });
 
   it("エラー発生時はエラーメッセージが表示される", async () => {

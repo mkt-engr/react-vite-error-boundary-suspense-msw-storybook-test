@@ -4,9 +4,9 @@ import { server } from "@/mocks/server";
 import { customRender } from "@/test/customRender";
 import { screen } from "@testing-library/react";
 import { delay, http, HttpResponse } from "msw";
-import { Item as Component } from ".";
+import { Content as Component } from ".";
 
-describe("Item", () => {
+describe("Content", () => {
   it("商品が3つある場合、商品一覧と合計金額が表示される", async () => {
     server.use(
       http.get("https://dummyjson.com/carts/1", () => {
@@ -84,7 +84,7 @@ describe("Item", () => {
 
     customRender(<Component />);
 
-    expect(screen.getByText("カートのローディング")).toBeInTheDocument();
+    expect(screen.getByText("カートの読み込み中...")).toBeInTheDocument();
   });
 
   it("エラー発生時はエラーメッセージが表示される", async () => {
