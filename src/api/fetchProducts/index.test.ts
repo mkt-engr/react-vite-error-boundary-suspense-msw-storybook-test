@@ -76,8 +76,7 @@ describe("fetchProducts", () => {
   });
 
   it("クエリパラメータが正しく含まれる", async () => {
-    let capturedUrl = "";
-    const capturedSearchParams = vi.fn();
+    const onRequestSearchParams = vi.fn();
 
     server.use(
       buildGetProductsSearchHandler.success({
@@ -85,15 +84,12 @@ describe("fetchProducts", () => {
           products: [],
           total: 0,
         }),
-        onRequestSearchParams: (searchParams) => {
-          capturedUrl = `https://dummyjson.com/products/search?${searchParams.toString()}`;
-          capturedSearchParams(searchParams);
-        },
+        onRequestSearchParams,
       })
     );
 
     await fetchProducts({ query: "iphone" });
 
-    expect(capturedUrl).toContain("q=iphone");
+    expect(onRequestSearchParams).toBeCalledWith({ q: "iphone" });
   });
 });
