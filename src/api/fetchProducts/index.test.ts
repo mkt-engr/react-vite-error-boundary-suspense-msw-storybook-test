@@ -1,4 +1,7 @@
-import { generateProductsSearchMock, generateProductInSearchMock } from "@mocks/product";
+import {
+  generateProductInSearchMock,
+  generateProductsSearchMock,
+} from "@mocks/product";
 import { buildGetProductsSearchHandler } from "@mocks/product/handler";
 import { server } from "@mocks/server";
 import { vi } from "vitest";
@@ -30,7 +33,7 @@ describe("fetchProducts", () => {
 
     server.use(
       buildGetProductsSearchHandler.success({
-        response: mockData
+        response: mockData,
       })
     );
 
@@ -44,9 +47,7 @@ describe("fetchProducts", () => {
   });
 
   it("HTTPエラーの場合はエラーを投げる", async () => {
-    server.use(
-      buildGetProductsSearchHandler.error({ status: 500 })
-    );
+    server.use(buildGetProductsSearchHandler.error({ status: 500 }));
 
     await expect(fetchProducts({ query: "test" })).rejects.toThrow(
       "HTTP error! status: 500"
@@ -65,7 +66,7 @@ describe("fetchProducts", () => {
 
     server.use(
       buildGetProductsSearchHandler.success({
-        response: invalidData
+        response: invalidData,
       })
     );
 
@@ -87,7 +88,7 @@ describe("fetchProducts", () => {
         onRequestSearchParams: (searchParams) => {
           capturedUrl = `https://dummyjson.com/products/search?${searchParams.toString()}`;
           capturedSearchParams(searchParams);
-        }
+        },
       })
     );
 

@@ -1,4 +1,7 @@
-import { generateProductsSearchMock, generateProductInSearchMock } from "@mocks/product";
+import {
+  generateProductInSearchMock,
+  generateProductsSearchMock,
+} from "@mocks/product";
 import { buildGetProductsSearchHandler } from "@mocks/product/handler";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ProductList as component } from ".";
@@ -56,7 +59,7 @@ export const Default: Story = {
               }),
             ],
             total: 3,
-          })
+          }),
         }),
       ],
     },
@@ -71,7 +74,7 @@ export const NoProduct: Story = {
           response: generateProductsSearchMock({
             products: [],
             total: 0,
-          })
+          }),
         }),
       ],
     },
@@ -81,9 +84,7 @@ export const NoProduct: Story = {
 export const Loading: Story = {
   parameters: {
     msw: {
-      handlers: [
-        buildGetProductsSearchHandler.loading(),
-      ],
+      handlers: [buildGetProductsSearchHandler.loading()],
     },
   },
 };
@@ -91,9 +92,7 @@ export const Loading: Story = {
 export const Error: Story = {
   parameters: {
     msw: {
-      handlers: [
-        buildGetProductsSearchHandler.error({ status: 500 }),
-      ],
+      handlers: [buildGetProductsSearchHandler.error({ status: 500 })],
     },
   },
 };

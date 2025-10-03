@@ -29,7 +29,7 @@ describe("fetchCartByUserId", () => {
 
     server.use(
       buildGetCartHandler.success({
-        response: mockCart
+        response: mockCart,
       })
     );
 
@@ -69,7 +69,7 @@ describe("fetchCartByUserId", () => {
 
     server.use(
       buildGetCartHandler.success({
-        response: invalidCart
+        response: invalidCart,
       })
     );
 
@@ -79,9 +79,7 @@ describe("fetchCartByUserId", () => {
   });
 
   it("500エラーレスポンスの場合、HTTPエラーがスローされる", async () => {
-    server.use(
-      buildGetCartHandler.error({ status: 500 })
-    );
+    server.use(buildGetCartHandler.error({ status: 500 }));
 
     await expect(fetchCartByUserId({ userId: "1" })).rejects.toThrow(
       "HTTP error! status: 500"

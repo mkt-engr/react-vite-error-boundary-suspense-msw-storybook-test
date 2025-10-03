@@ -13,7 +13,7 @@ describe("fetchQuote", () => {
 
     server.use(
       buildGetQuoteHandler.success({
-        response: mockQuote
+        response: mockQuote,
       })
     );
 
@@ -25,9 +25,7 @@ describe("fetchQuote", () => {
   });
 
   it("HTTPエラーの場合はエラーを投げる", async () => {
-    server.use(
-      buildGetQuoteHandler.error({ status: 500 })
-    );
+    server.use(buildGetQuoteHandler.error({ status: 500 }));
 
     await expect(fetchQuote()).rejects.toThrow("HTTP error! status: 500");
   });
@@ -35,7 +33,7 @@ describe("fetchQuote", () => {
   it("不正なデータの場合はエラーを投げる", async () => {
     server.use(
       buildGetQuoteHandler.success({
-        response: { invalid: "data" } as any
+        response: { invalid: "data" } as any,
       })
     );
 

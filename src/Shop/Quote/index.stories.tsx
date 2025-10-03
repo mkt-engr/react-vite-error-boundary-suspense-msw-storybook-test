@@ -29,7 +29,7 @@ export const Default: Story = {
             id: 1,
             quote: "君のような勘のいいガキは嫌いだよ",
             author: "ショウ・タッカー",
-          })
+          }),
         }),
       ],
     },
@@ -46,7 +46,7 @@ export const LongQuote: Story = {
             quote:
               "The way to get started is to quit talking and begin doing. Don't be afraid to give up the good to go for the great. Innovation distinguishes between a leader and a follower.",
             author: "Walt Disney & Steve Jobs",
-          })
+          }),
         }),
       ],
     },
@@ -56,9 +56,7 @@ export const LongQuote: Story = {
 export const Loading: Story = {
   parameters: {
     msw: {
-      handlers: [
-        buildGetQuoteHandler.loading(),
-      ],
+      handlers: [buildGetQuoteHandler.loading()],
     },
   },
 };
@@ -66,9 +64,7 @@ export const Loading: Story = {
 export const Error: Story = {
   parameters: {
     msw: {
-      handlers: [
-        buildGetQuoteHandler.error({ status: 500 }),
-      ],
+      handlers: [buildGetQuoteHandler.error({ status: 500 })],
     },
   },
 };

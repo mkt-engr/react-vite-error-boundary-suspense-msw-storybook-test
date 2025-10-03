@@ -31,7 +31,7 @@ export const Default: Story = {
               generateProductMock({ id: num, title: `商品${num}` })
             ),
             total: 1500,
-          })
+          }),
         }),
       ],
     },
@@ -48,7 +48,7 @@ export const ManyProducts: Story = {
               generateProductMock({ id: num, title: `商品${num}` })
             ),
             total: 5000,
-          })
+          }),
         }),
       ],
     },
@@ -66,7 +66,7 @@ export const EmptyCart: Story = {
             discountedTotal: 0,
             totalProducts: 0,
             totalQuantity: 0,
-          })
+          }),
         }),
       ],
     },
@@ -76,9 +76,7 @@ export const EmptyCart: Story = {
 export const Loading: Story = {
   parameters: {
     msw: {
-      handlers: [
-        buildGetCartHandler.loading(),
-      ],
+      handlers: [buildGetCartHandler.loading()],
     },
   },
 };
@@ -86,9 +84,7 @@ export const Loading: Story = {
 export const Error: Story = {
   parameters: {
     msw: {
-      handlers: [
-        buildGetCartHandler.error({ status: 500 }),
-      ],
+      handlers: [buildGetCartHandler.error({ status: 500 })],
     },
   },
 };

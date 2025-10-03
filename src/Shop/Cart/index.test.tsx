@@ -15,7 +15,7 @@ describe("Cart", () => {
             generateProductMock({ id: num, title: `商品${num}` })
           ),
           total: 800,
-        })
+        }),
       })
     );
 
@@ -37,7 +37,7 @@ describe("Cart", () => {
           discountedTotal: 0,
           totalProducts: 0,
           totalQuantity: 0,
-        })
+        }),
       })
     );
 
@@ -49,9 +49,7 @@ describe("Cart", () => {
   });
 
   it("ローディング中はローディングメッセージが表示される", async () => {
-    server.use(
-      buildGetCartHandler.loading()
-    );
+    server.use(buildGetCartHandler.loading());
 
     customRender(<Component />);
 
@@ -59,9 +57,7 @@ describe("Cart", () => {
   });
 
   it("エラー発生時はエラーメッセージが表示される", async () => {
-    server.use(
-      buildGetCartHandler.error({ status: 500 })
-    );
+    server.use(buildGetCartHandler.error({ status: 500 }));
 
     customRender(<Component />);
 

@@ -31,7 +31,7 @@ export const Default: Story = {
             products: [1, 2, 3].map((num) =>
               generateProductMock({ title: `商品${num}` })
             ),
-          })
+          }),
         }),
       ],
     },
@@ -49,7 +49,7 @@ export const NoProductInCart: Story = {
             discountedTotal: 0,
             totalProducts: 0,
             totalQuantity: 0,
-          })
+          }),
         }),
       ],
     },
@@ -59,9 +59,7 @@ export const NoProductInCart: Story = {
 export const Loading: Story = {
   parameters: {
     msw: {
-      handlers: [
-        buildGetCartHandler.loading(),
-      ],
+      handlers: [buildGetCartHandler.loading()],
     },
   },
 };
@@ -69,9 +67,7 @@ export const Loading: Story = {
 export const Error: Story = {
   parameters: {
     msw: {
-      handlers: [
-        buildGetCartHandler.error({ status: 500 }),
-      ],
+      handlers: [buildGetCartHandler.error({ status: 500 })],
     },
   },
 };
