@@ -219,3 +219,27 @@ globals: true,
 だけで管理できます
 
 これで、エイリアスの設定は tsconfig.json だけ で完結します。
+
+# onRequestParamsのアサーション
+builderで
+```
+type SuccessHandlerOptions = {
+  response?: JsonBodyType;
+  onPathParams?: (params: unknown) => void;
+  onRequestBody?: (body: unknown) => void;
+  onRequestSearchParams?: (searchParams: URLSearchParams) => void;
+};
+---
+  success: (options: SuccessHandlerOptions = {}): HttpHandler =>
+      http[method](path, async (req) => {
+        options.onRequestSearchParams?.(new URL(req.request.url).searchParams);
+```
+の場合、アサーションは下記のようになる。
+
+```tsx
+ expect(onRequestSearchParams).toBeCalledWith(
+      new URLSearchParams("q=phone a")
+    );
+```
+
+ただ、毎回`new URLSearchParams`をするのがめんどくさいので変えた。

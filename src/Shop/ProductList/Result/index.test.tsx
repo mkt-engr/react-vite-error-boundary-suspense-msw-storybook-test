@@ -108,8 +108,6 @@ describe("Result", () => {
 
     await screen.findByText("商品件数:1件");
 
-    expect(onRequestSearchParams).toBeCalledWith(
-      new URLSearchParams("q=phone a")
-    );
+    expect(onRequestSearchParams).toBeCalledWith({ q: "phone a" });
   });
 });

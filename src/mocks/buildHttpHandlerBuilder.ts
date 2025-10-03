@@ -11,7 +11,7 @@ type SuccessHandlerOptions = {
   response?: JsonBodyType;
   onPathParams?: (params: unknown) => void;
   onRequestBody?: (body: unknown) => void;
-  onRequestSearchParams?: (searchParams: URLSearchParams) => void;
+  onRequestSearchParams?: (searchParams: Record<string, string>) => void;
 };
 
 type LoadingHandlerOptions = {
@@ -112,7 +112,10 @@ export const buildHttpHandlerBuilder = ({
   return {
     success: (options: SuccessHandlerOptions = {}): HttpHandler =>
       http[method](path, async (req) => {
-        options.onRequestSearchParams?.(new URL(req.request.url).searchParams);
+        const searchParams = Object.fromEntries(
+          new URL(req.request.url).searchParams
+        );
+        options.onRequestSearchParams?.(searchParams);
         /** @link {https://mswjs.io/docs/api/http/#httpget} ここでパスパラメータを取得できる */
         options.onPathParams?.(req.params);
         options.onRequestBody?.(await req.request.json());
