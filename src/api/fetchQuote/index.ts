@@ -1,5 +1,5 @@
-import { quoteResponseSchema, type QuoteResponse } from "@/schemes/quote";
-import { generateApiUrl } from "@/test/generateApiUrl";
+import { quoteResponseSchema, type QuoteResponse } from "@schemes/quote";
+import { generateApiUrl } from "@utils/generateApiUrl";
 
 export const fetchQuote = async (): Promise<QuoteResponse> => {
   const response = await fetch(generateApiUrl("/quotes/random"));

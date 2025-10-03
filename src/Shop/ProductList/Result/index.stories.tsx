@@ -1,5 +1,5 @@
-import { generateProductsSearchMock, generateProductInSearchMock } from "@/mocks/product";
-import { buildGetProductsSearchHandler } from "@/mocks/product/handler";
+import { generateProductsSearchMock, generateProductInSearchMock } from "@mocks/product";
+import { buildGetProductsSearchHandler } from "@mocks/product/handler";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Result as component } from ".";
 

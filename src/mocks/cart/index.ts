@@ -1,4 +1,4 @@
-import type { Cart } from "@/schemes/cart";
+import type { Cart } from "@schemes/cart";
 import { generateProductMock } from "../product";
 
 export const generateCartMock = (override: Partial<Cart> = {}): Cart => ({

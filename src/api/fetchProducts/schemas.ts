@@ -4,7 +4,7 @@ import {
   productPriceSchema,
   productThumbnailSchema,
   productTitleSchema,
-} from "@/schemes/product";
+} from "@schemes/product";
 import z from "zod";
 
 const productSchema = z.object({

@@ -10,9 +10,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
       "@test": path.resolve(__dirname, "src/test"),
       "@mocks": path.resolve(__dirname, "src/mocks"),
+      "@api": path.resolve(__dirname, "src/api"),
+      "@utils": path.resolve(__dirname, "src/utils"),
+      "@common": path.resolve(__dirname, "src/common"),
+      "@schemes": path.resolve(__dirname, "src/schemes"),
     },
   },
   test: {

@@ -1,8 +1,8 @@
+import { generateApiUrl } from "@utils/generateApiUrl";
 import {
   productsSearchResponseSchema,
   type ProductsSearchResponse,
 } from "./schemas";
-import { generateApiUrl } from "@/test/generateApiUrl";
 
 type Args = {
   query: string;

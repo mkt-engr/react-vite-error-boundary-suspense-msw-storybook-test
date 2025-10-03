@@ -1,4 +1,4 @@
-import { generateApiUrl } from "@/test/generateApiUrl";
+import { generateApiUrl } from "@utils/generateApiUrl";
 import { generateProductsSearchMock } from ".";
 import { buildHttpHandlerBuilder } from "../buildHttpHandlerBuilder";
 

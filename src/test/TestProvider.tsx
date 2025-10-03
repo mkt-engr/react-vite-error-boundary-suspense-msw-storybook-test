@@ -1,4 +1,4 @@
-import ErrorBoundary from "@/common/ErrorBoundary";
+import ErrorBoundary from "@common/ErrorBoundary";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Suspense, type ReactNode } from "react";
 

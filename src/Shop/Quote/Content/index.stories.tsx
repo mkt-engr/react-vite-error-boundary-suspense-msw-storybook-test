@@ -1,5 +1,5 @@
-import { generateQuoteMock } from "@/mocks/quota";
-import { buildGetQuoteHandler } from "@/mocks/quota/handler";
+import { generateQuoteMock } from "@mocks/quota";
+import { buildGetQuoteHandler } from "@mocks/quota/handler";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Content as component } from ".";
 

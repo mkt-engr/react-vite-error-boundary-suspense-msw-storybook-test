@@ -23,6 +23,7 @@ type ErrorHandlerOptions = {
   status: number;
   errorCode?: string;
   statusText?: string;
+  response?: JsonBodyType;
 };
 
 type HttpHandlerMethods = {
@@ -44,7 +45,7 @@ type BuildHttpHandlerBuilderOptions = {
  *
  * @example
  * // ハンドラー生成用関数を作成（デフォルトレスポンス付き）
- * const handlers = buildMswHttpHandlerBuilder({
+ * const handlers = buildHttpHandlerBuilder({
  *   path: "/api/v1/users",
  *   method: "get",
  *   defaultResponse: generateUsersMock(),
@@ -69,19 +70,10 @@ type BuildHttpHandlerBuilderOptions = {
  *   onRequestBody,
  * });
  *
- * // 異常系: エラーコード付き
- * const errorHandler1 = handlers.error({
- *   status: 404,
- *   errorCode: "NOT_FOUND",
- * });
- *
- * // 異常系: エラーコードなし
- * const errorHandler2 = handlers.error({ status: 500 });
- *
  * // loading: 無限ローディング（デフォルトレスポンス使用）
  * const loadingHandler1 = handlers.loading();
  *
- * // loading: 3秒後に正常レスポンス
+ * // loading: 3秒後に正常レスポンス（デフォルトレスポンス使用）
  * const loadingHandler2 = handlers.loading({ delay: 3000 });
  *
  * // loading: 無限ローディング（レスポンス上書き）
@@ -89,8 +81,28 @@ type BuildHttpHandlerBuilderOptions = {
  *   response: generateMockUser({ name: "カスタムユーザー" }),
  * });
  *
- * @param param0
- * @returns MswHttpHandlerMethods
+ * // 異常系: エラーコード付き（デフォルトレスポンス使用）
+ * const errorHandler1 = handlers.error({
+ *   status: 404,
+ *   errorCode: "NOT_FOUND",
+ * });
+ *
+ * // 異常系: エラーコードなし（デフォルトレスポンス使用）
+ * const errorHandler2 = handlers.error({ status: 500 });
+ *
+ * // 異常系: カスタムエラーレスポンス付き
+ * const errorHandler3 = handlers.error({
+ *   status: 400,
+ *   errorCode: "VALIDATION_ERROR",
+ *   statusText: "Bad Request",
+ *   response: { message: "Invalid input", errors: ["name is required"] },
+ * });
+ *
+ * @param options - ハンドラビルダーのオプション
+ * @param options.path - APIのパス
+ * @param options.method - HTTPメソッド (get, post, put, delete等)
+ * @param options.defaultResponse - デフォルトのレスポンスボディ
+ * @returns HttpHandlerMethods
  */
 export const buildHttpHandlerBuilder = ({
   path,
@@ -121,7 +133,7 @@ export const buildHttpHandlerBuilder = ({
 
     error: (options: ErrorHandlerOptions): HttpHandler =>
       http[method](path, async () => {
-        return HttpResponse.json(null, {
+        return HttpResponse.json(options.response ?? defaultResponse, {
           status: options.status ?? 500,
           statusText: options.statusText ?? "error",
         });

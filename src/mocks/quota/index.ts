@@ -1,4 +1,4 @@
-import type { Quote } from "@/schemes/quote";
+import type { Quote } from "@schemes/quote";
 
 export const generateQuoteMock = (override: Partial<Quote> = {}): Quote => ({
   id: 1,

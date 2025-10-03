@@ -7,9 +7,12 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
       "@test": path.resolve(__dirname, "src/test"),
       "@mocks": path.resolve(__dirname, "src/mocks"),
+      "@api": path.resolve(__dirname, "src/api"),
+      "@utils": path.resolve(__dirname, "src/utils"),
+      "@common": path.resolve(__dirname, "src/common"),
+      "@schemes": path.resolve(__dirname, "src/schemes"),
     },
   },
 });

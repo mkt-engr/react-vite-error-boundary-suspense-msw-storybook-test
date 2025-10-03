@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { fetchProducts } from "@/api/fetchProducts";
+import { fetchProducts } from "@api/fetchProducts";
 
 type Args = {
   query: string;

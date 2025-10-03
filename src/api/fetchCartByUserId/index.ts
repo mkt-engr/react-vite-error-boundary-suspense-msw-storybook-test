@@ -1,4 +1,4 @@
-import { cartSchema, type Cart } from "@/schemes/cart";
+import { cartSchema, type Cart } from "@schemes/cart";
 
 type Args = {
   userId: string;

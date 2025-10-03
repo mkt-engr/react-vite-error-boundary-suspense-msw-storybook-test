@@ -1,6 +1,6 @@
-import { generateCartMock } from "@/mocks/cart";
-import { buildGetCartHandler } from "@/mocks/cart/handler";
-import { generateProductMock } from "@/mocks/product";
+import { generateCartMock } from "@mocks/cart";
+import { buildGetCartHandler } from "@mocks/cart/handler";
+import { generateProductMock } from "@mocks/product";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Content as component } from ".";
 

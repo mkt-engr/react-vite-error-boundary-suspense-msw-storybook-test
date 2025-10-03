@@ -15,9 +15,12 @@
     "strict": true,
     "types": ["vitest/globals"],
     "paths": {
-      "@/*": ["src/*"],
       "@test/*": ["src/test/*"],
-      "@mocks/*": ["src/mocks/*"]
+      "@mocks/*": ["src/mocks/*"],
+      "@api/*": ["src/api/*"],
+      "@utils/*": ["src/utils/*"],
+      "@common/*": ["src/common/*"],
+      "@schemes/*": ["src/schemes/*"]
     }
   }
 }

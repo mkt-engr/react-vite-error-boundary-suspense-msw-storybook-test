@@ -1,4 +1,4 @@
-import ErrorBoundary from "@/common/ErrorBoundary";
+import ErrorBoundary from "@common/ErrorBoundary";
 import { Suspense, type FC } from "react";
 import { useProducts } from "./useProducts";
 

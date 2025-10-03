@@ -1,7 +1,7 @@
-import { generateCartMock } from "@/mocks/cart";
-import { buildGetCartHandler } from "@/mocks/cart/handler";
-import { generateProductMock } from "@/mocks/product";
-import { server } from "@/mocks/server";
+import { generateCartMock } from "@mocks/cart";
+import { buildGetCartHandler } from "@mocks/cart/handler";
+import { generateProductMock } from "@mocks/product";
+import { server } from "@mocks/server";
 import { fetchCartByUserId } from ".";
 
 describe("fetchCartByUserId", () => {

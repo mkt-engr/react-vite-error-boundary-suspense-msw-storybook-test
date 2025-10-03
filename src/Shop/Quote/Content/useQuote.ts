@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { fetchQuote } from "@/api/fetchQuote";
+import { fetchQuote } from "@api/fetchQuote";
 
 export const useQuote = () => {
   const { data, isPending, error } = useSuspenseQuery({

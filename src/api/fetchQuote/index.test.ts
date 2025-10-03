@@ -1,6 +1,6 @@
-import { generateQuoteMock } from "@/mocks/quota";
-import { buildGetQuoteHandler } from "@/mocks/quota/handler";
-import { server } from "@/mocks/server";
+import { generateQuoteMock } from "@mocks/quota";
+import { buildGetQuoteHandler } from "@mocks/quota/handler";
+import { server } from "@mocks/server";
 import { fetchQuote } from ".";
 
 describe("fetchQuote", () => {

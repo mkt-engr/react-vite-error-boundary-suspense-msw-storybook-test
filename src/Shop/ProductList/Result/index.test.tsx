@@ -1,12 +1,15 @@
-import { generateProductsSearchMock, generateProductInSearchMock } from "@/mocks/product";
-import { buildGetProductsSearchHandler } from "@/mocks/product/handler";
-import { server } from "@/mocks/server";
-import { customRender } from "@/test/customRender";
+import {
+  generateProductInSearchMock,
+  generateProductsSearchMock,
+} from "@mocks/product";
+import { buildGetProductsSearchHandler } from "@mocks/product/handler";
+import { server } from "@mocks/server";
+import { customRender } from "@test/customRender";
 import { screen } from "@testing-library/react";
 import { vi } from "vitest";
 import { Result } from ".";
 
-describe("Results", () => {
+describe("Result", () => {
   it("商品が3つある場合、商品一覧と件数が表示される", async () => {
     server.use(
       buildGetProductsSearchHandler.success({
@@ -35,7 +38,7 @@ describe("Results", () => {
             }),
           ],
           total: 3,
-        })
+        }),
       })
     );
 
@@ -54,7 +57,7 @@ describe("Results", () => {
         response: generateProductsSearchMock({
           products: [],
           total: 0,
-        })
+        }),
       })
     );
 
@@ -66,9 +69,7 @@ describe("Results", () => {
   });
 
   it("ローディング中はローディングメッセージが表示される", async () => {
-    server.use(
-      buildGetProductsSearchHandler.loading()
-    );
+    server.use(buildGetProductsSearchHandler.loading());
 
     customRender(<Result query="test" />);
 
@@ -76,9 +77,7 @@ describe("Results", () => {
   });
 
   it("エラー発生時はエラーメッセージが表示される", async () => {
-    server.use(
-      buildGetProductsSearchHandler.error({ status: 500 })
-    );
+    server.use(buildGetProductsSearchHandler.error({ status: 500 }));
 
     customRender(<Result query="test" />);
 
@@ -100,7 +99,7 @@ describe("Results", () => {
         onRequestSearchParams: (searchParams) => {
           capturedUrl = `https://dummyjson.com/products/search?${searchParams.toString()}`;
           capturedSearchParams(searchParams);
-        }
+        },
       })
     );
 

@@ -1,8 +1,8 @@
-import { generateCartMock } from "@/mocks/cart";
-import { buildGetCartHandler } from "@/mocks/cart/handler";
-import { generateProductMock } from "@/mocks/product";
-import { server } from "@/mocks/server";
-import { customRender } from "@/test/customRender";
+import { generateCartMock } from "@mocks/cart";
+import { buildGetCartHandler } from "@mocks/cart/handler";
+import { generateProductMock } from "@mocks/product";
+import { server } from "@mocks/server";
+import { customRender } from "@test/customRender";
 import { screen } from "@testing-library/react";
 import { Cart as Component } from ".";
 

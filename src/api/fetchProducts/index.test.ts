@@ -1,6 +1,6 @@
-import { generateProductsSearchMock, generateProductInSearchMock } from "@/mocks/product";
-import { buildGetProductsSearchHandler } from "@/mocks/product/handler";
-import { server } from "@/mocks/server";
+import { generateProductsSearchMock, generateProductInSearchMock } from "@mocks/product";
+import { buildGetProductsSearchHandler } from "@mocks/product/handler";
+import { server } from "@mocks/server";
 import { vi } from "vitest";
 import { fetchProducts } from ".";
 

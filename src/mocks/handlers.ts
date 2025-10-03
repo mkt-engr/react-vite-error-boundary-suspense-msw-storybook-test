@@ -1,7 +1,10 @@
-import { generateCartMock } from "@/mocks/cart";
-import { generateProductMock, generateProductsSearchMock } from "@/mocks/product";
-import { generateQuoteMock } from "@/mocks/quota";
-import { generateApiUrl } from "@/test/generateApiUrl";
+import { generateCartMock } from "@mocks/cart";
+import {
+  generateProductMock,
+  generateProductsSearchMock,
+} from "@mocks/product";
+import { generateQuoteMock } from "@mocks/quota";
+import { generateApiUrl } from "@utils/generateApiUrl";
 import { http, HttpResponse } from "msw";
 
 export const handlers = [
