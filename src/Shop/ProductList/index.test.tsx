@@ -70,6 +70,8 @@ describe("ProductList", () => {
     await userEvent.click(searchInput);
     await userEvent.paste("iphone");
 
-    expect(onRequestSearchParams).toBeCalledWith({ q: "iphone" });
+    expect(onRequestSearchParams).toBeCalledWith(
+      new URLSearchParams("q=iphone")
+    );
   });
 });
