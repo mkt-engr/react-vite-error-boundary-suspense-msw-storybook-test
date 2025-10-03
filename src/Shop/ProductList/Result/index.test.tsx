@@ -87,26 +87,27 @@ describe("Result", () => {
   });
 
   it("検索クエリが渡されている場合、クエリパラメータが含まれる", async () => {
-    let capturedUrl = "";
-    const capturedSearchParams = vi.fn();
+    const onRequestSearchParams = vi.fn();
 
     server.use(
       buildGetProductsSearchHandler.success({
         response: generateProductsSearchMock({
-          products: [],
-          total: 0,
+          products: [
+            generateProductInSearchMock({
+              id: 1,
+              title: "iPhone 15 Pro",
+            }),
+          ],
+          total: 1,
         }),
-        onRequestSearchParams: (searchParams) => {
-          capturedUrl = `https://dummyjson.com/products/search?${searchParams.toString()}`;
-          capturedSearchParams(searchParams);
-        },
+        onRequestSearchParams,
       })
     );
 
-    customRender(<Result query="iphone" />);
+    customRender(<Result query="phone a" />);
 
-    await screen.findByText("商品がありませんでした。");
+    await screen.findByText("商品件数:1件");
 
-    expect(capturedUrl).toContain("q=iphone");
+    expect(onRequestSearchParams).toBeCalledWith({ q: "phone a" });
   });
 });

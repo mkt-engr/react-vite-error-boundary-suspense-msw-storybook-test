@@ -172,47 +172,50 @@ const etag = generateETag(products);
 # vite.config.ts、vitest.config.ts、tsconfig.jsonでエイリアスを三重管理していたのをやめる
 
 > エイリアスをtscondig.jsonとvitest.config.tsで2回書くのは面倒\
-1回で済むようにする方法を教えて 
+> 1回で済むようにする方法を教えて
 
 ⏺ vite-tsconfig-paths
-  プラグインを使えば、tsconfig.jsonの設定だけで済みます。
+プラグインを使えば、tsconfig.jsonの設定だけで済みます。
 
-  手順：
+手順：
 
-  1. プラグインをインストール
-  pnpm add -D vite-tsconfig-paths
+1. プラグインをインストール
+   pnpm add -D vite-tsconfig-paths
 
-  2. vite.config.ts と vitest.config.ts を更新
+2. vite.config.ts と vitest.config.ts を更新
 
-  // vite.config.ts
-  import react from "@vitejs/plugin-react-swc";
-  import { defineConfig } from "vite";
-  import tsconfigPaths from "vite-tsconfig-paths";
+// vite.config.ts
+import react from "@vitejs/plugin-react-swc";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
-  export default defineConfig({
-    plugins: [react(), tsconfigPaths()],
-  });
+export default defineConfig({
+plugins: [react(), tsconfigPaths()],
+});
 
-  // vitest.config.ts
-  import react from "@vitejs/plugin-react-swc";
-  import path from "path";
-  import { fileURLToPath } from "url";
-  import { defineConfig } from "vitest/config";
-  import tsconfigPaths from "vite-tsconfig-paths";
+// vitest.config.ts
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
+import { fileURLToPath } from "url";
+import { defineConfig } from "vitest/config";
+import tsconfigPaths from "vite-tsconfig-paths";
 
-  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const \_\_dirname = path.dirname(fileURLToPath(import.meta.url));
 
-  export default defineConfig({
-    plugins: [react(), tsconfigPaths()],
-    test: {
-      environment: "jsdom",
-      setupFiles: ["./src/test/vitest.setup.ts"],
-      globals: true,
-    },
-  });
+export default defineConfig({
+plugins: [react(), tsconfigPaths()],
+test: {
+environment: "jsdom",
+setupFiles: ["./src/test/vitest.setup.ts"],
+globals: true,
+},
+});
 
-  3. 設定ファイルからエイリアス定義を削除
+3. 設定ファイルからエイリアス定義を削除
+
+
     - resolve.alias の部分を削除すれば、tsconfig.jsonの paths
-  だけで管理できます
 
-  これで、エイリアスの設定は tsconfig.json だけ で完結します。
+だけで管理できます
+
+これで、エイリアスの設定は tsconfig.json だけ で完結します。
