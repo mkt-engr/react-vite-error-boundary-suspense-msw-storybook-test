@@ -168,3 +168,51 @@ const etag = generateETag(products);
 });
 
 つまり304は正常な状態で、キャッシュが効いているサインです。エラーではありません。
+
+# vite.config.tsとtsconfig.jsonでエイリアスを二重管理していたのをやめる
+
+> エイリアスをtscondig.jsonとvitest.config.tsで2回書くのは面倒\
+1回で済むようにする方法を教えて 
+
+⏺ vite-tsconfig-paths
+  プラグインを使えば、tsconfig.jsonの設定だけで済みます。
+
+  手順：
+
+  1. プラグインをインストール
+  pnpm add -D vite-tsconfig-paths
+
+  2. vite.config.ts と vitest.config.ts を更新
+
+  // vite.config.ts
+  import react from "@vitejs/plugin-react-swc";
+  import { defineConfig } from "vite";
+  import tsconfigPaths from "vite-tsconfig-paths";
+
+  export default defineConfig({
+    plugins: [react(), tsconfigPaths()],
+  });
+
+  // vitest.config.ts
+  import react from "@vitejs/plugin-react-swc";
+  import path from "path";
+  import { fileURLToPath } from "url";
+  import { defineConfig } from "vitest/config";
+  import tsconfigPaths from "vite-tsconfig-paths";
+
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+  export default defineConfig({
+    plugins: [react(), tsconfigPaths()],
+    test: {
+      environment: "jsdom",
+      setupFiles: ["./src/test/vitest.setup.ts"],
+      globals: true,
+    },
+  });
+
+  3. 設定ファイルからエイリアス定義を削除
+    - resolve.alias の部分を削除すれば、tsconfig.jsonの paths
+  だけで管理できます
+
+  これで、エイリアスの設定は tsconfig.json だけ で完結します。
