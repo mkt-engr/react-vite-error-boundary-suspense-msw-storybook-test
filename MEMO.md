@@ -169,7 +169,7 @@ const etag = generateETag(products);
 
 つまり304は正常な状態で、キャッシュが効いているサインです。エラーではありません。
 
-# vite.config.tsとtsconfig.jsonでエイリアスを二重管理していたのをやめる
+# vite.config.ts、vitest.config.ts、tsconfig.jsonでエイリアスを三重管理していたのをやめる
 
 > エイリアスをtscondig.jsonとvitest.config.tsで2回書くのは面倒\
 1回で済むようにする方法を教えて 
