@@ -12,7 +12,7 @@
     "type-check": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "catalog": "ENABLE_MOCK=true storybook dev -p 6006",
+    "storybook": "ENABLE_MOCK=true storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "ENABLE_MOCK=true vitest",
     "test:watch": "ENABLE_MOCK=true vitest watch",

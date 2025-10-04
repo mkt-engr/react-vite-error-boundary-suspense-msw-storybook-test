@@ -22,7 +22,7 @@ describe("fetchCartByUserId", () => {
           total: 500,
           discountPercentage: 10,
           discountedTotal: 450,
-          thumbnail: "https://example.com/test-product.jpg",
+          thumbnail: "https://placehold.jp/30/0010f5/ffffff/300x150.png?text=product+image1",
         }),
       ],
     });
@@ -51,7 +51,7 @@ describe("fetchCartByUserId", () => {
           total: 500,
           discountPercentage: 10,
           discountedTotal: 450,
-          thumbnail: "https://example.com/test-product.jpg",
+          thumbnail: "https://placehold.jp/30/0010f5/ffffff/300x150.png?text=product+image1",
         },
       ],
     });

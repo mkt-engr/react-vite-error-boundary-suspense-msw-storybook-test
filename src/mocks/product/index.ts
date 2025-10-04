@@ -15,7 +15,7 @@ export const generateProductMock = (
   discountPercentage: 0,
   discountedTotal: 100,
   thumbnail:
-    "https://cdn.dummyjson.com/products/images/vehicle/Charger%20SXT%20RWD/thumbnail.png",
+    "https://placehold.jp/30/0010f5/ffffff/300x150.png?text=product+image1",
   ...override,
 });
 
@@ -34,8 +34,8 @@ export const generateProductInSearchMock = (
   sku: "WW013001",
   weight: 2,
   tags: ["スマートフォン", "Apple"],
-  images: ["https://example.com/image1.jpg"],
-  thumbnail: "https://example.com/thumb1.jpg",
+  images: ["https://placehold.jp/30/0010f5/ffffff/300x150.png?text=product+image1"],
+  thumbnail: "https://placehold.jp/30/0010f5/ffffff/300x150.png?text=product+image1",
   ...override,
 });
 
@@ -56,8 +56,8 @@ export const generateProductsSearchMock = (
       sku: "WW013001",
       weight: 2,
       tags: ["スマートフォン", "Apple"],
-      images: ["https://example.com/image1.jpg"],
-      thumbnail: "https://example.com/thumb1.jpg",
+      images: ["https://placehold.jp/30/0010f5/ffffff/300x150.png?text=product+image1"],
+      thumbnail: "https://placehold.jp/30/0010f5/ffffff/300x150.png?text=product+image1",
     }),
     generateProductInSearchMock({
       id: 2,
@@ -72,8 +72,8 @@ export const generateProductsSearchMock = (
       sku: "WW013002",
       weight: 2,
       tags: ["ノートパソコン", "Apple"],
-      images: ["https://example.com/image2.jpg"],
-      thumbnail: "https://example.com/thumb2.jpg",
+      images: ["https://placehold.jp/30/0010f5/ffffff/300x150.png?text=product+image2"],
+      thumbnail: "https://placehold.jp/30/0010f5/ffffff/300x150.png?text=product+image2",
     }),
     generateProductInSearchMock({
       id: 3,
@@ -88,8 +88,8 @@ export const generateProductsSearchMock = (
       sku: "WW013003",
       weight: 2,
       tags: ["ゲーム機", "Nintendo"],
-      images: ["https://example.com/image3.jpg"],
-      thumbnail: "https://example.com/thumb3.jpg",
+      images: ["https://placehold.jp/30/0010f5/ffffff/300x150.png?text=product+image3"],
+      thumbnail: "https://placehold.jp/30/0010f5/ffffff/300x150.png?text=product+image3",
     }),
   ],
   total: 3,
