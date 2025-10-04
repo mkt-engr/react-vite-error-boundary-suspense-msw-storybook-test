@@ -17,10 +17,9 @@
     "paths": {
       "@test/*": ["src/test/*"],
       "@mocks/*": ["src/mocks/*"],
-      "@api/*": ["src/api/*"],
       "@utils/*": ["src/utils/*"],
       "@common/*": ["src/common/*"],
-      "@schemes/*": ["src/schemes/*"]
+      "@features/*": ["src/features/*"]
     }
   }
 }

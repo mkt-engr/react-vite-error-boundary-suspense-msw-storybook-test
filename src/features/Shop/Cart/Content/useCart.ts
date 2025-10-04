@@ -1,4 +1,4 @@
-import { fetchCartByUserId } from "@api/fetchCartByUserId";
+import { fetchCartByUserId } from "@features/Shop/Cart/api/fetchCartByUserId";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 type Args = {

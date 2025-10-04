@@ -1,4 +1,4 @@
-import { fetchQuote } from "@api/fetchQuote";
+import { fetchQuote } from "@features/Shop/Quote/api/fetchQuote";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 export const useQuote = () => {

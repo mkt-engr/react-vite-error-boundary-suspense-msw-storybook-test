@@ -1,11 +1,20 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
-import { App } from "./App.tsx";
 import ErrorBoundary from "./common/ErrorBoundary.tsx";
+import { routeTree } from "./routeTree.gen";
 
 const queryClient = new QueryClient();
+
+const router = createRouter({ routeTree });
+
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}
 
 async function enableMocking() {
   if (import.meta.env.MODE !== "development") {
@@ -33,7 +42,7 @@ enableMocking().then(() =>
         <ErrorBoundary fallback={null}>
           <Suspense>
             <ReactQueryDevtools initialIsOpen={false} />
-            <App />
+            <RouterProvider router={router} />
           </Suspense>
         </ErrorBoundary>
       </QueryClientProvider>

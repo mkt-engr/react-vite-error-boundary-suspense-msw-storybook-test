@@ -1,3 +1,3 @@
-import { Shop } from "./Shop";
+import { Shop } from "@features/Shop";
 
 export const App = () => <Shop />;

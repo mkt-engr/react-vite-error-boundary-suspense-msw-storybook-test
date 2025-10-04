@@ -1,4 +1,4 @@
-import { fetchProducts } from "@api/fetchProducts";
+import { fetchProducts } from "@features/Shop/ProductList/api/fetchProducts";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 type Args = {

@@ -1,8 +1,8 @@
 import type {
   ProductInSearch,
   ProductsSearchResponse,
-} from "@api/fetchProducts/schemas";
-import type { Product } from "@schemes/product";
+} from "@features/Shop/ProductList/api/fetchProducts/schemas";
+import type { Product } from "@features/Shop/ProductList/schemas/product";
 
 export const generateProductMock = (
   override: Partial<Product> = {}
