@@ -1,4 +1,5 @@
 import { buildGetCartHandler } from "@mocks/cart/handler";
+import { handlers } from "@mocks/handlers";
 import { buildGetProductsSearchHandler } from "@mocks/product/handler";
 import { buildGetQuoteHandler } from "@mocks/quota/handler";
 import type { Meta, StoryObj } from "@storybook/react-vite";
@@ -41,7 +42,7 @@ export const Error: Story = {
 export const ErrorOnQuote: Story = {
   parameters: {
     msw: {
-      handlers: [buildGetQuoteHandler.error({ status: 500 })],
+      handlers: [...handlers, buildGetQuoteHandler.error({ status: 500 })],
     },
   },
 };
