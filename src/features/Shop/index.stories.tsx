@@ -37,3 +37,11 @@ export const Error: Story = {
     },
   },
 };
+
+export const ErrorOnQuote: Story = {
+  parameters: {
+    msw: {
+      handlers: [buildGetQuoteHandler.error({ status: 500 })],
+    },
+  },
+};
