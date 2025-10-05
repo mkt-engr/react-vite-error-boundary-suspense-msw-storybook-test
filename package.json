@@ -16,7 +16,8 @@
     "build-storybook": "storybook build",
     "test": "ENABLE_MOCK=true vitest",
     "test:watch": "ENABLE_MOCK=true vitest watch",
-    "test:coverage": "ENABLE_MOCK=true vitest run --coverage"
+    "test:coverage": "ENABLE_MOCK=true vitest run --coverage",
+    "chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.2",
@@ -47,6 +48,7 @@
     "@vitejs/plugin-react-swc": "^4.0.1",
     "@vitest/browser": "^3.2.4",
     "@vitest/coverage-v8": "^3.2.4",
+    "chromatic": "^13.3.0",
     "eslint": "^9.35.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
