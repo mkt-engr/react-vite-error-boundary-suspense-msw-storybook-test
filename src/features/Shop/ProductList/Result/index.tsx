@@ -36,7 +36,7 @@ const Inner: FC<Props> = ({ query }) => {
             <img src={product.thumbnail} alt={product.title} width={100} />
             <h3>{product.title}</h3>
             <p>{product.description}</p>
-            <div>${product.price}</div>
+            <div>{product.price}円</div>
             <hr />
           </div>
         ))}
