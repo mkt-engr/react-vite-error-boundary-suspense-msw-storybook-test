@@ -16,10 +16,13 @@ export const TestProvider = ({ children }: Props) => {
       },
     },
   });
+
   return (
     <QueryClientProvider client={queryClient}>
-      <ErrorBoundary fallback={null}>
-        <Suspense>{children}</Suspense>
+      <ErrorBoundary fallback={<div>全画面エラー</div>}>
+        <Suspense fallback={<div>全画面読み込み中...</div>}>
+          {children}
+        </Suspense>
       </ErrorBoundary>
     </QueryClientProvider>
   );

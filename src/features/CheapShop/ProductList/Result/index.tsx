@@ -1,5 +1,5 @@
-import ErrorBoundary from "@common/ErrorBoundary";
-import { Suspense, type FC } from "react";
+// Error BoundaryとSuspenseが個別にないため、このコンポーネント単体では動作しません
+import { type FC } from "react";
 import { useProducts } from "./useProducts";
 
 type Props = {
@@ -7,16 +7,6 @@ type Props = {
 };
 
 export const Result: FC<Props> = ({ query }: Props) => {
-  return (
-    <ErrorBoundary fallback={<div>商品一覧でエラーが発生しました</div>}>
-      <Suspense fallback={<div>商品一覧を読み込み中...</div>}>
-        <Inner query={query} />
-      </Suspense>
-    </ErrorBoundary>
-  );
-};
-
-const Inner: FC<Props> = ({ query }) => {
   const { data } = useProducts({ query });
 
   if (data.products.length === 0) {

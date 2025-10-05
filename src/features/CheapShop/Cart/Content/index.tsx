@@ -1,18 +1,7 @@
-import ErrorBoundary from "@common/ErrorBoundary";
-import { Suspense } from "react";
+// Error BoundaryとSuspenseが個別にないため、このコンポーネント単体では動作しません
 import { useItem } from "./useCart";
 
 export const Content = () => {
-  return (
-    <ErrorBoundary fallback={<div>カートの取得に失敗しました。</div>}>
-      <Suspense fallback={<div>カートの読み込み中...</div>}>
-        <Inner />
-      </Suspense>
-    </ErrorBoundary>
-  );
-};
-
-const Inner = () => {
   const { cart } = useItem({ userId: "1" });
 
   if (cart.products.length === 0) {

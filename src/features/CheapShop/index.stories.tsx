@@ -2,7 +2,7 @@ import { buildGetCartHandler } from "@mocks/cart/handler";
 import { buildGetProductsSearchHandler } from "@mocks/product/handler";
 import { buildGetQuoteHandler } from "@mocks/quota/handler";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Shop as component } from ".";
+import { CheapShop as component } from ".";
 
 const meta: Meta<typeof component> = {
   component,
