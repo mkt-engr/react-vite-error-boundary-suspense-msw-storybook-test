@@ -6,7 +6,7 @@ type Args = {
 };
 
 export const useProducts = ({ query }: Args) => {
-  const { data, isPending, error } = useSuspenseQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ["products", query],
     queryFn: async () => {
       const response = await fetchProducts({ query });
@@ -14,5 +14,5 @@ export const useProducts = ({ query }: Args) => {
     },
   });
 
-  return { data, isPending, error };
+  return { data };
 };

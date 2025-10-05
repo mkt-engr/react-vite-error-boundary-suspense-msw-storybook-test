@@ -2,7 +2,7 @@ import { fetchQuote } from "@features/CheapShop/Quote/api/fetchQuote";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 export const useQuote = () => {
-  const { data, isPending, error } = useSuspenseQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ["quote"],
     queryFn: async () => {
       const response = await fetchQuote();
@@ -10,5 +10,5 @@ export const useQuote = () => {
     },
   });
 
-  return { data, isPending, error };
+  return { data };
 };
