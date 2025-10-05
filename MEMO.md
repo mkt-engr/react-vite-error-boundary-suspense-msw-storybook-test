@@ -212,16 +212,16 @@ globals: true,
 });
 
 3. 設定ファイルからエイリアス定義を削除
-
-
-    - resolve.alias の部分を削除すれば、tsconfig.jsonの paths
+   - resolve.alias の部分を削除すれば、tsconfig.jsonの paths
 
 だけで管理できます
 
 これで、エイリアスの設定は tsconfig.json だけ で完結します。
 
 # onRequestParamsのアサーション
+
 builderで
+
 ```
 type SuccessHandlerOptions = {
   response?: JsonBodyType;
@@ -234,12 +234,16 @@ type SuccessHandlerOptions = {
       http[method](path, async (req) => {
         options.onRequestSearchParams?.(new URL(req.request.url).searchParams);
 ```
+
 の場合、アサーションは下記のようになる。
 
 ```tsx
- expect(onRequestSearchParams).toBeCalledWith(
-      new URLSearchParams("q=phone a")
-    );
+expect(onRequestSearchParams).toBeCalledWith(new URLSearchParams("q=phone a"));
 ```
 
 ただ、毎回`new URLSearchParams`をするのがめんどくさいので変えた。
+
+# Chromaticに自分のStorybookを公開
+
+ここからやる
+https://www.chromatic.com/apps?accountId=65f834004dd2925643854a11
