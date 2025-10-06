@@ -7,7 +7,7 @@ import { screen } from "@testing-library/react";
 import { Cart as Component } from ".";
 
 describe("Cart", () => {
-  it("商品が3つある場合、商品一覧と合計金額が表示される", async () => {
+  it("商品が3つある場合、商品一覧と合計金額が表示されること", async () => {
     server.use(
       buildGetCartHandler.success({
         response: generateCartMock({
@@ -28,7 +28,7 @@ describe("Cart", () => {
     expect(screen.getByText("商品3")).toBeInTheDocument();
   });
 
-  it("商品が0の場合、空カートメッセージが表示される", async () => {
+  it("商品が0の場合、空カートメッセージが表示されること", async () => {
     server.use(
       buildGetCartHandler.success({
         response: generateCartMock({
@@ -48,7 +48,7 @@ describe("Cart", () => {
     ).toBeInTheDocument();
   });
 
-  it.skip("ローディング中はローディングメッセージが表示される", async () => {
+  it.skip("ローディング中はローディングメッセージが表示されること", async () => {
     // Error BoundaryとSuspenseが全体にあるため、このテストは動作しません
     server.use(buildGetCartHandler.loading());
 
@@ -57,7 +57,7 @@ describe("Cart", () => {
     expect(screen.getByText("カートの読み込み中...")).toBeInTheDocument();
   });
 
-  it.skip("エラー発生時はエラーメッセージが表示される", async () => {
+  it.skip("エラー発生時はエラーメッセージが表示されること", async () => {
     // Error BoundaryとSuspenseが全体にあるため、このテストは動作しません
     server.use(buildGetCartHandler.error({ status: 500 }));
 

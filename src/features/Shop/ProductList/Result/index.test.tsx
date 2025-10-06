@@ -10,7 +10,7 @@ import { vi } from "vitest";
 import { Result } from ".";
 
 describe("Result", () => {
-  it("商品が3つある場合、商品一覧と件数が表示される", async () => {
+  it("商品が3つある場合、商品一覧と件数が表示されること", async () => {
     const onRequestSearchParams = vi.fn();
 
     server.use(
@@ -54,7 +54,7 @@ describe("Result", () => {
     expect(onRequestSearchParams).toBeCalledWith({ q: "Mac" });
   });
 
-  it("商品が0の場合、商品がないメッセージが表示される", async () => {
+  it("商品が0の場合、商品がないメッセージが表示されること", async () => {
     server.use(
       buildGetProductsSearchHandler.success({
         response: generateProductsSearchMock({
@@ -71,7 +71,7 @@ describe("Result", () => {
     ).toBeInTheDocument();
   });
 
-  it("ローディング中はローディングメッセージが表示される", async () => {
+  it("ローディング中はローディングメッセージが表示されること", async () => {
     server.use(buildGetProductsSearchHandler.loading());
 
     customRender(<Result query="test" />);
@@ -79,7 +79,7 @@ describe("Result", () => {
     expect(screen.getByText("商品一覧を読み込み中...")).toBeInTheDocument();
   });
 
-  it("エラー発生時はエラーメッセージが表示される", async () => {
+  it("エラー発生時はエラーメッセージが表示されること", async () => {
     server.use(buildGetProductsSearchHandler.error({ status: 500 }));
 
     customRender(<Result query="test" />);
@@ -89,7 +89,7 @@ describe("Result", () => {
     ).toBeInTheDocument();
   });
 
-  it("検索クエリが渡されている場合、クエリパラメータが含まれる", async () => {
+  it("検索クエリが渡されている場合、クエリパラメータが含まれること", async () => {
     const onRequestSearchParams = vi.fn();
 
     server.use(

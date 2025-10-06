@@ -11,7 +11,7 @@ import { vi } from "vitest";
 import { ProductList } from ".";
 
 describe("ProductList", () => {
-  it("商品が0の場合、商品がないメッセージが表示される", async () => {
+  it("商品が0の場合、商品がないメッセージが表示されること", async () => {
     server.use(
       buildGetProductsSearchHandler.success({
         response: generateProductsSearchMock({
@@ -28,7 +28,7 @@ describe("ProductList", () => {
     ).toBeInTheDocument();
   });
 
-  it.skip("ローディング中はローディングメッセージが表示される", async () => {
+  it.skip("ローディング中はローディングメッセージが表示されること", async () => {
     // Error BoundaryとSuspenseが全体にあるため、このテストは動作しません
     server.use(buildGetProductsSearchHandler.loading());
 
@@ -37,7 +37,7 @@ describe("ProductList", () => {
     expect(screen.getByText("商品一覧を読み込み中...")).toBeInTheDocument();
   });
 
-  it.skip("エラー発生時はエラーメッセージが表示される", async () => {
+  it.skip("エラー発生時はエラーメッセージが表示されること", async () => {
     // Error BoundaryとSuspenseが全体にあるため、このテストは動作しません
     server.use(buildGetProductsSearchHandler.error({ status: 500 }));
 
@@ -48,7 +48,7 @@ describe("ProductList", () => {
     ).toBeInTheDocument();
   });
 
-  it.skip("検索欄に入力した内容がsearchParamsに反映される", async () => {
+  it.skip("検索欄に入力した内容がsearchParamsに反映されること", async () => {
     // Error BoundaryとSuspenseが全体にあるため、このテストは動作しません
     const onRequestSearchParams = vi.fn();
 

@@ -7,7 +7,7 @@ import { screen } from "@testing-library/react";
 import { Content as Component } from ".";
 
 describe("Content", () => {
-  it("商品が3つある場合、商品一覧と合計金額が表示される", async () => {
+  it("商品が3つある場合、商品一覧と合計金額が表示されること", async () => {
     server.use(
       buildGetCartHandler.success({
         response: generateCartMock({
@@ -28,7 +28,7 @@ describe("Content", () => {
     expect(screen.getByText("商品3")).toBeInTheDocument();
   });
 
-  it("商品が多数ある場合、すべての商品が表示される", async () => {
+  it("商品が多数ある場合、すべての商品が表示されること", async () => {
     server.use(
       buildGetCartHandler.success({
         response: generateCartMock({
@@ -49,7 +49,7 @@ describe("Content", () => {
     }
   });
 
-  it("商品が0の場合、空カートメッセージが表示される", async () => {
+  it("商品が0の場合、空カートメッセージが表示されること", async () => {
     server.use(
       buildGetCartHandler.success({
         response: generateCartMock({
@@ -69,7 +69,7 @@ describe("Content", () => {
     ).toBeInTheDocument();
   });
 
-  it("ローディング中はローディングメッセージが表示される", async () => {
+  it("ローディング中はローディングメッセージが表示されること", async () => {
     server.use(buildGetCartHandler.loading());
 
     customRender(<Component />);
@@ -77,7 +77,7 @@ describe("Content", () => {
     expect(screen.getByText("カートの読み込み中...")).toBeInTheDocument();
   });
 
-  it("エラー発生時はエラーメッセージが表示される", async () => {
+  it("エラー発生時はエラーメッセージが表示されること", async () => {
     server.use(buildGetCartHandler.error({ status: 500 }));
 
     customRender(<Component />);

@@ -10,7 +10,7 @@ import { vi } from "vitest";
 import { Result } from ".";
 
 describe("Result", () => {
-  it("商品が3つある場合、商品一覧と件数が表示される", async () => {
+  it("商品が3つある場合、商品一覧と件数が表示されること", async () => {
     server.use(
       buildGetProductsSearchHandler.success({
         response: generateProductsSearchMock({
@@ -51,7 +51,7 @@ describe("Result", () => {
     expect(screen.getByText("Nintendo Switch OLED")).toBeInTheDocument();
   });
 
-  it("商品が0の場合、商品がないメッセージが表示される", async () => {
+  it("商品が0の場合、商品がないメッセージが表示されること", async () => {
     server.use(
       buildGetProductsSearchHandler.success({
         response: generateProductsSearchMock({
@@ -68,7 +68,7 @@ describe("Result", () => {
     ).toBeInTheDocument();
   });
 
-  it.skip("ローディング中はローディングメッセージが表示される", async () => {
+  it.skip("ローディング中はローディングメッセージが表示されること", async () => {
     // Error BoundaryとSuspenseが全体にあるため、このテストは動作しません
     server.use(buildGetProductsSearchHandler.loading());
 
@@ -77,7 +77,7 @@ describe("Result", () => {
     expect(screen.getByText("商品一覧を読み込み中...")).toBeInTheDocument();
   });
 
-  it.skip("エラー発生時はエラーメッセージが表示される", async () => {
+  it.skip("エラー発生時はエラーメッセージが表示されること", async () => {
     // Error BoundaryとSuspenseが全体にあるため、このテストは動作しません
     server.use(buildGetProductsSearchHandler.error({ status: 500 }));
 
@@ -88,7 +88,7 @@ describe("Result", () => {
     ).toBeInTheDocument();
   });
 
-  it("検索クエリが渡されている場合、クエリパラメータが含まれる", async () => {
+  it("検索クエリが渡されている場合、クエリパラメータが含まれること", async () => {
     const onRequestSearchParams = vi.fn();
 
     server.use(
