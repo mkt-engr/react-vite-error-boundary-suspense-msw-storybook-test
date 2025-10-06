@@ -11,6 +11,8 @@ import { Result } from ".";
 
 describe("Result", () => {
   it("商品が3つある場合、商品一覧と件数が表示される", async () => {
+    const onRequestSearchParams = vi.fn();
+
     server.use(
       buildGetProductsSearchHandler.success({
         response: generateProductsSearchMock({
@@ -39,16 +41,17 @@ describe("Result", () => {
           ],
           total: 3,
         }),
+        onRequestSearchParams,
       })
     );
 
-    customRender(<Result query="" />);
+    customRender(<Result query="Mac" />);
 
-    await screen.findByText("商品件数:3件");
-
-    expect(screen.getByText("iPhone 15 Pro")).toBeInTheDocument();
-    expect(screen.getByText("MacBook Air M3")).toBeInTheDocument();
-    expect(screen.getByText("Nintendo Switch OLED")).toBeInTheDocument();
+    expect(await screen.findByText("商品件数:3件")).toBeInTheDocument();
+    expect(await screen.findByText("iPhone 15 Pro")).toBeInTheDocument();
+    expect(await screen.findByText("MacBook Air M3")).toBeInTheDocument();
+    expect(await screen.findByText("Nintendo Switch OLED")).toBeInTheDocument();
+    expect(onRequestSearchParams).toBeCalledWith({ q: "Mac" });
   });
 
   it("商品が0の場合、商品がないメッセージが表示される", async () => {
