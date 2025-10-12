@@ -6,7 +6,7 @@ export const ProductList = () => {
   const deferredQuery = useDeferredValue(query);
 
   return (
-    <main>
+    <section>
       <h2>商品一覧</h2>
       <label>
         検索
@@ -18,6 +18,6 @@ export const ProductList = () => {
       </label>
       {query !== deferredQuery ? <span>検索中</span> : null}
       <Result query={deferredQuery} />
-    </main>
+    </section>
   );
 };
