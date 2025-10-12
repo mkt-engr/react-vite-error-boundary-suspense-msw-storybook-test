@@ -11,7 +11,9 @@ type Args = {
 export const fetchProducts = async ({
   query,
 }: Args): Promise<ProductsSearchResponse> => {
-  const response = await fetch(generateApiUrl(`/products/search?q=${query}`));
+  const response = await fetch(
+    generateApiUrl(`/products/search?q=${encodeURIComponent(query)}`)
+  );
 
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
